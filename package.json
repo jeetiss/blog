@@ -1,0 +1,40 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gatsby develop",
+    "build": "gatsby build",
+    "predeploy": "gatsby build --prefix-paths",
+    "deploy": "gh-pages -d public"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0",
+    "babel-plugin-styled-components": "^1.7.1",
+    "gatsby": "^2.0.6",
+    "gatsby-mdx": "^0.1.4",
+    "gatsby-plugin-google-analytics": "^2.0.6",
+    "gatsby-plugin-layout": "^1.0.1",
+    "gatsby-plugin-mdx": "^1.0.1",
+    "gatsby-plugin-react-helmet": "^3.0.0",
+    "gatsby-plugin-styled-components": "^3.0.0",
+    "gh-pages": "^2.0.0",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-helmet": "^5.2.0",
+    "react-powerplug": "^1.0.0-rc.1",
+    "styled-components": "^4.0.0-beta.7",
+    "styled-system": "^3.1.4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@mdx-js/loader": "^0.15.2",
+    "@mdx-js/mdx": "^0.15.2",
+    "gatsby-plugin-root-import": "^2.0.4",
+    "loader-utils": "^1.1.0",
+    "pretty-bytes": "^5.1.0"
+  }
+}
