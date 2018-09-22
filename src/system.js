@@ -22,6 +22,7 @@ const createTag = _blacklist => ({ blacklist = [], ...props }) => {
 
 const system = (props = {}, ...funcs) => {
   const propNames = funcs.reduce(
+    // eslint-disable-next-line
     (a, func) => [...a, ...Object.keys(func.propTypes || {})],
     []
   );
