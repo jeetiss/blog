@@ -1,46 +1,68 @@
-import React from "react";
-import { Link } from "gatsby";
+import React, { Fragment } from "react";
+import Helmet from "react-helmet";
+import { ThemeProvider } from "styled-components";
+import { Toggle, Compose } from "react-powerplug/dist/react-powerplug.umd";
+import { MDXProvider } from "@mdx-js/tag";
 import { Flex, Box } from "./Grid";
-import { css } from "styled-components";
-import system from "../system";
+import { Text } from "./Font";
+import GlobalStyle from "./GlobalStyle";
+import Link from "./Link";
 
-const A = system({
-  extend: Link,
-  css: css`
-    text-decoration: none;
-    color: black;
-    cursor: pointer;
-  `
-});
+const components = {
+  p: Text
+};
 
-const activeStyle = { opacity: 0.5 };
+const themes = [
+  { text: "black", background: "white" },
+  { text: "white", background: "black" }
+];
 
 const Layout = ({ children }) => (
-  <Flex justifyContent="center">
-    <Flex flexDirection="column" flex="0 1 800px">
-      <Flex justifyContent="flex-end">
-        <Box px={16} py="8px">
-          <A to="/about/" activeStyle={activeStyle}>
-            about
-          </A>
-        </Box>
+  <Fragment>
+    <Helmet>
+      <link
+        href="https://fonts.googleapis.com/css?family=Rubik&amp;subset=cyrillic"
+        rel="stylesheet"
+      />
+    </Helmet>
 
-        <Box px={16} py="8px">
-          <A to="/articles/" activeStyle={activeStyle}>
-            articles
-          </A>
-        </Box>
+    <Compose components={[Toggle, Toggle]}>
+      {({ on: dark, toggle: tgDark }, { on: xray, toggle: tgXRay }) => (
+        <ThemeProvider theme={themes[+dark]}>
+          <Fragment>
+            <GlobalStyle xray={xray} />
 
-        <Box px={16} py="8px">
-          <A to="/projects/" activeStyle={activeStyle}>
-            projects
-          </A>
-        </Box>
-      </Flex>
+            <Flex justifyContent="center">
+              <Flex flexDirection="column" flex="0 1 800px" px={16}>
+                <Flex justifyContent="flex-end" alignItems="center">
+                  <Flex flex="1">
+                    <button onClick={tgDark}>dark</button>
+                    <button onClick={tgXRay}>x-ray</button>
+                  </Flex>
 
-      {children}
-    </Flex>
-  </Flex>
+                  <Box px={16} py="8px">
+                    <Link to="/about/">обо мне</Link>
+                  </Box>
+
+                  {/* <Box px={16} py="8px">
+                    <Link to="/articles/">
+                      посты
+                    </Link>
+                  </Box> */}
+
+                  <Box px={16} py="8px">
+                    <Link to="/projects/">проекты</Link>
+                  </Box>
+                </Flex>
+
+                <MDXProvider components={components}>{children}</MDXProvider>
+              </Flex>
+            </Flex>
+          </Fragment>
+        </ThemeProvider>
+      )}
+    </Compose>
+  </Fragment>
 );
 
 export default Layout;
