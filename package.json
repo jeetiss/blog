@@ -7,7 +7,7 @@
     "dev": "gatsby develop",
     "build": "gatsby build",
     "predeploy": "gatsby build --prefix-paths",
-    "deploy": "gh-pages -d public"
+    "deploy": "gh-pages -d public -b master"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
