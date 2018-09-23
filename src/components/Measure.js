@@ -136,7 +136,6 @@ class Measure extends React.Component {
           this.nodeToId.has(entry.target) &&
           entry.target instanceof HTMLElement
         ) {
-          console.log(entry.contentRect);
           newMeasurements[this.nodeToId.get(entry.target)] = {
             width: entry.contentRect.width,
             height: entry.contentRect.height
@@ -154,7 +153,9 @@ class Measure extends React.Component {
       entries.map(([key, ref]) => [ref.current, key])
     );
 
-    entries.forEach(([key, ref]) => this.resizeObserver.observe(ref.current));
+    entries.forEach(
+      ([key, ref]) => ref.current && this.resizeObserver.observe(ref.current)
+    );
   }
 
   componentWillUnmount() {

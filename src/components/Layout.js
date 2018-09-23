@@ -8,6 +8,8 @@ import { Flex, Box } from "./Grid";
 import MDXProvider from "./MDXProvider";
 import GlobalStyle from "./GlobalStyle";
 
+const isPropd = process.env.NODE_ENV === "production";
+
 const themes = [
   { text: "black", background: "white", hover: "white" },
   { text: "white", background: "black", hover: "white" }
@@ -35,19 +37,17 @@ const Layout = ({ location, children }) => (
 
             <Flex justifyContent="center">
               <Flex flexDirection="column" flex="0 1 800px" px={16}>
-                <Flex mt={48} alignItems="center">
-                  <Flex flex="1">
-                    <button onClick={tgDark}>dark</button>
-                    <button onClick={tgXRay}>x-ray</button>
-                  </Flex>
+                <Flex mt={48} justifyContent="flex-end" alignItems="center">
+                  {!isPropd && (
+                    <Flex flex="1">
+                      <button onClick={tgDark}>dark</button>
+                      <button onClick={tgXRay}>x-ray</button>
+                    </Flex>
+                  )}
 
                   <Tabs>
-                    <Tab as={Link} {...linkProps("/about/", location)}>
+                    <Tab as={Link} {...linkProps("/", location)}>
                       Обо мне
-                    </Tab>
-
-                    <Tab as={Link} {...linkProps("/projects/", location)}>
-                      Проекты
                     </Tab>
                   </Tabs>
                 </Flex>

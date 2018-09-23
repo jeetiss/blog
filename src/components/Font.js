@@ -21,7 +21,7 @@ const Text = system(
     fontFamily: 'Rubik',
     fontSize: 16,
     lineHeight: '24px',
-    my: '8px',
+    my: 16,
   },
   fontFamily,
   fontSize,

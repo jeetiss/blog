@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import styled from "styled-components";
 import Measure from "./Measure";
 import { Flex } from "./Grid";
@@ -13,8 +13,7 @@ const Tab = styled.button`
   font-size: 16px;
   line-height: 24px;
 
-  padding: 0 16px;
-  margin: 0;
+  padding: 0;
 
   outline: unset;
   border: unset;
@@ -26,6 +25,14 @@ const Tab = styled.button`
 
   &:hover {
     opacity: 1;
+  }
+`;
+
+const Reffer = styled.div`
+  margin-right: 32px;
+
+  &:last-child {
+    margin-right: 0;
   }
 `;
 
@@ -69,9 +76,8 @@ const getPosition = (measurements, value) =>
 const getStyle = (measurements, index) =>
   index >= 0
     ? {
-        transform: `translateX(${getPosition(measurements, index)}px) scaleX(${
-          measurements[index].width
-        })`
+        transform: `translateX(${getPosition(measurements, index) +
+          index * 32}px) scaleX(${measurements[index].width})`
       }
     : { opacity: 0 };
 
@@ -80,10 +86,10 @@ const Tabs = ({ children }) => (
     {({ bind, measurements }) => (
       <TabsContainer>
         <Flex>
-          {children.map((el, i) => (
-            <span {...bind(i)} key={i}>
+          {Children.toArray(children).map((el, i) => (
+            <Reffer {...bind(i)} key={i}>
               {el}
-            </span>
+            </Reffer>
           ))}
         </Flex>
 
@@ -92,7 +98,9 @@ const Tabs = ({ children }) => (
             <Caret
               style={getStyle(
                 measurements,
-                children.findIndex(child => child.props.active)
+                Children.toArray(children).findIndex(
+                  child => child.props.active
+                )
               )}
             />
           )}
