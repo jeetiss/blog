@@ -19,3 +19,5 @@ deploy:
   local-dir: ./public
   target-branch: master
   github-token: $GITHUB_TOKEN
+  on:
+    branch: dev
