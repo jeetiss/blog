@@ -1,5 +1,7 @@
 import system from "../system";
+import { css } from 'styled-components'
 import { fontFamily, fontSize, lineHeight, space } from "styled-system";
+import theme from "../theme";
 
 
 const Font = system(
@@ -24,7 +26,11 @@ const Text = system(
   fontFamily,
   fontSize,
   lineHeight,
-  space
+  space,
+  props => css`
+    color: ${theme('text')(props)};
+    transition: color ease 0.3s;
+  `,
 );
 
 export {Text, Font}

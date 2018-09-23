@@ -1,4 +1,5 @@
 import { css, createGlobalStyle } from "styled-components";
+import theme from "../theme";
 
 const xRay = props =>
   props.xray &&
@@ -28,12 +29,17 @@ const xRay = props =>
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    background-color: ${props => props.theme.background};
-    color: ${props => props.theme.text};
+    background-color: ${theme("background")};
 
-    transition: color 0.3s ease, background-color 0.3s ease;
+    transition: background-color 0.3s ease;
 
     ${xRay}
+  }
+
+  ::selection {
+    color: ${theme("background")};
+    background-color: ${theme("text")};
+    transition: color 0.3s ease, background-color 0.3s ease;
   }
 `;
 
