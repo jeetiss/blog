@@ -697,7 +697,7 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@emotion/is-prop-valid@^0.6.8":
+"@emotion/is-prop-valid@^0.6.5", "@emotion/is-prop-valid@^0.6.8":
   version "0.6.8"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.6.8.tgz#68ad02831da41213a2089d2cab4e8ac8b30cbd85"
   dependencies:
@@ -744,6 +744,10 @@
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.2.tgz#54c5a964462be3d4d78af631363c18d6fa91ac26"
 
+"@popmotion/easing@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@popmotion/easing/-/easing-1.0.1.tgz#48336aea29542113df10aeb81b4fd10f0b95f937"
+
 "@reach/router@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.1.1.tgz#24a5b20f1cc9e55e2cbcdc454fb82c94db479a81"
@@ -782,6 +786,10 @@
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.0.tgz#2fac51050c68f7d6f96c5aafc631132522f4aa3f"
 
+"@types/invariant@^2.2.29":
+  version "2.2.29"
+  resolved "https://registry.yarnpkg.com/@types/invariant/-/invariant-2.2.29.tgz#aa845204cd0a289f65d47e0de63a6a815e30cc66"
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
@@ -794,9 +802,17 @@
   version "10.10.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.10.1.tgz#d5c96ca246a418404914d180b7fdd625ad18eca6"
 
+"@types/node@^10.0.5":
+  version "10.10.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.10.3.tgz#09c75a4ad84d6a3d286790bdd9489a4f8ee9906c"
+
 "@types/node@^7.0.11":
   version "7.0.70"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.70.tgz#688aaeb6e6d374ed016c4dc2c46de695859d6887"
+
+"@types/node@^9.4.6":
+  version "9.6.32"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.32.tgz#1b64134f630b30c9cda4810aa4a94fc2d4141dbd"
 
 "@types/prop-types@*":
   version "15.5.5"
@@ -1082,7 +1098,28 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apollo-link@^1.2.2:
+apollo-link-http-common@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/apollo-link-http-common/-/apollo-link-http-common-0.2.5.tgz#d094beb7971523203359bf830bfbfa7b4e7c30ed"
+  dependencies:
+    apollo-link "^1.2.3"
+
+apollo-link-http@^1.5.4:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/apollo-link-http/-/apollo-link-http-1.5.5.tgz#7dbe851821771ad67fa29e3900c57f38cbd80da8"
+  dependencies:
+    apollo-link "^1.2.3"
+    apollo-link-http-common "^0.2.5"
+
+apollo-link@1.2.1:
+  version "1.2.1"
+  resolved "http://registry.npmjs.org/apollo-link/-/apollo-link-1.2.1.tgz#c120b16059f9bd93401b9f72b94d2f80f3f305d2"
+  dependencies:
+    "@types/node" "^9.4.6"
+    apollo-utilities "^1.0.0"
+    zen-observable-ts "^0.8.6"
+
+apollo-link@^1.2.2, apollo-link@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.3.tgz#9bd8d5fe1d88d31dc91dae9ecc22474d451fb70d"
   dependencies:
@@ -3164,6 +3201,10 @@ dotenv@^4.0.0:
   version "4.0.0"
   resolved "http://registry.npmjs.org/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
 
+dotenv@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.0.0.tgz#24e37c041741c5f4b25324958ebbc34bca965935"
+
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -3966,6 +4007,12 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
+framesync@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/framesync/-/framesync-4.0.0.tgz#4f7d89d9b4960fece330a0d811c84b1602aace03"
+  dependencies:
+    hey-listen "^1.0.5"
+
 fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
@@ -4118,10 +4165,6 @@ gatsby-plugin-layout@^1.0.1:
   dependencies:
     "@babel/runtime" "^7.0.0"
 
-gatsby-plugin-mdx@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-mdx/-/gatsby-plugin-mdx-1.0.1.tgz#238ecc7418bb24dade96061103379ffa29799740"
-
 gatsby-plugin-page-creator@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-page-creator/-/gatsby-plugin-page-creator-2.0.0.tgz#be8b2ffa4c0a9de6e0db10acdfa4e26b27f81123"
@@ -4158,6 +4201,19 @@ gatsby-react-router-scroll@^2.0.0:
     "@babel/runtime" "^7.0.0"
     scroll-behavior "^0.9.9"
     warning "^3.0.0"
+
+gatsby-source-graphql@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/gatsby-source-graphql/-/gatsby-source-graphql-2.0.2.tgz#b64c889fba93996ea5a01efbbcf6588a647e7d2f"
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    apollo-link "1.2.1"
+    apollo-link-http "^1.5.4"
+    graphql "^0.13.2"
+    graphql-tools "^3.0.4"
+    invariant "^2.2.4"
+    node-fetch "^1.7.3"
+    uuid "^3.1.0"
 
 gatsby@^2.0.6:
   version "2.0.6"
@@ -4623,6 +4679,10 @@ header-case@^1.0.0:
 hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
+
+hey-listen@^1.0.4, hey-listen@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/hey-listen/-/hey-listen-1.0.5.tgz#6d0a3a2f60177f65bc4404d571a00025bf5dc20e"
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
@@ -6122,7 +6182,7 @@ node-fetch@2.1.2:
   version "2.1.2"
   resolved "http://registry.npmjs.org/node-fetch/-/node-fetch-2.1.2.tgz#ab884e8e7e57e38a944753cec706f788d1768bb5"
 
-node-fetch@^1.0.1:
+node-fetch@^1.0.1, node-fetch@^1.7.3:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
   dependencies:
@@ -6758,6 +6818,28 @@ pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
 
+popmotion-pose@^3.3.0:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/popmotion-pose/-/popmotion-pose-3.3.1.tgz#31bab99d8407917dd2055fc374cd95632646be2e"
+  dependencies:
+    "@popmotion/easing" "^1.0.1"
+    hey-listen "^1.0.5"
+    popmotion "^8.4.0"
+    pose-core "^2.0.0"
+    style-value-types "^3.0.6"
+    tslib "^1.9.1"
+
+popmotion@^8.4.0:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/popmotion/-/popmotion-8.4.0.tgz#1152245663ab7a8f154ec83c9e8aefc73bd35db4"
+  dependencies:
+    "@popmotion/easing" "^1.0.1"
+    framesync "^4.0.0"
+    hey-listen "^1.0.5"
+    style-value-types "^3.0.6"
+    stylefire "^2.0.7"
+    tslib "^1.9.1"
+
 portfinder@^1.0.9:
   version "1.0.17"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.17.tgz#a8a1691143e46c4735edefcf4fbcccedad26456a"
@@ -6765,6 +6847,15 @@ portfinder@^1.0.9:
     async "^1.5.2"
     debug "^2.2.0"
     mkdirp "0.5.x"
+
+pose-core@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/pose-core/-/pose-core-2.0.0.tgz#1a1497a18a25ed2556d92dd728e909e96df6d67e"
+  dependencies:
+    "@types/invariant" "^2.2.29"
+    "@types/node" "^10.0.5"
+    hey-listen "^1.0.5"
+    tslib "^1.9.1"
 
 posix-character-classes@^0.1.0:
   version "0.1.1"
@@ -7340,13 +7431,23 @@ react-hot-loader@^4.1.0:
     react-lifecycles-compat "^3.0.4"
     shallowequal "^1.0.2"
 
-react-is@^16.3.1:
+react-is@^16.3.1, react-is@^16.5.1:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.5.2.tgz#e2a7b7c3f5d48062eb769fcb123505eb928722e3"
 
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+
+react-pose@^3.3.4:
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/react-pose/-/react-pose-3.3.4.tgz#7aac93ba09163ed018f1e538d0075c3a2ac65479"
+  dependencies:
+    "@emotion/is-prop-valid" "^0.6.5"
+    hey-listen "^1.0.5"
+    popmotion-pose "^3.3.0"
+    react-is "^16.5.1"
+    tslib "^1.9.1"
 
 react-powerplug@^1.0.0-rc.1:
   version "1.0.0-rc.1"
@@ -7722,6 +7823,10 @@ require-uncached@^1.0.3:
 requires-port@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
+
+resize-observer-polyfill@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.0.tgz#660ff1d9712a2382baa2cad450a4716209f9ca69"
 
 resolve-cwd@^2.0.0:
   version "2.0.0"
@@ -8451,6 +8556,10 @@ style-loader@^0.21.0:
     loader-utils "^1.1.0"
     schema-utils "^0.4.5"
 
+style-value-types@^3.0.6:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/style-value-types/-/style-value-types-3.0.7.tgz#6e7a22cc8b1a4465193268ed66ad5f2a82579054"
+
 styled-components@^4.0.0-beta.7:
   version "4.0.0-beta.8-unpure"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-4.0.0-beta.8-unpure.tgz#b172d9891ad50ecfd788380333d4cbab4d0f0457"
@@ -8468,6 +8577,15 @@ styled-system@^3.1.4:
   resolved "https://registry.yarnpkg.com/styled-system/-/styled-system-3.1.4.tgz#d3cc0cfea91273c39f06af5eaaaa2decf84506c0"
   dependencies:
     prop-types "^15.6.2"
+
+stylefire@^2.0.7:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/stylefire/-/stylefire-2.1.0.tgz#356dc7951da17f4f55f5f5e6473f2327c17e7077"
+  dependencies:
+    framesync "^4.0.0"
+    hey-listen "^1.0.4"
+    style-value-types "^3.0.6"
+    tslib "^1.9.1"
 
 stylehacks@^4.0.0:
   version "4.0.0"
@@ -8720,7 +8838,7 @@ trough@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/trough/-/trough-1.0.3.tgz#e29bd1614c6458d44869fc28b255ab7857ef7c24"
 
-tslib@^1.6.0, tslib@^1.9.0:
+tslib@^1.6.0, tslib@^1.9.0, tslib@^1.9.1:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
 
@@ -9516,7 +9634,7 @@ yurnalist@^0.2.1:
     semver "^5.1.0"
     strip-bom "^3.0.0"
 
-zen-observable-ts@^0.8.10:
+zen-observable-ts@^0.8.10, zen-observable-ts@^0.8.6:
   version "0.8.10"
   resolved "https://registry.yarnpkg.com/zen-observable-ts/-/zen-observable-ts-0.8.10.tgz#18e2ce1c89fe026e9621fd83cc05168228fce829"
   dependencies:

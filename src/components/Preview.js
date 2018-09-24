@@ -1,15 +1,24 @@
 import React from "react";
-import { Link as GatsbyLink } from "gatsby";
-import Font from "./Font";
 import styled from "styled-components";
 import theme from "../theme";
+import { Text } from "components/Font";
+import { getLinkProps } from "./Link";
 
-const Actor = styled.div`
+const Actor = styled.a`
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin: 16px 0;
+`;
+
+const Container = styled.div`
   display: inline-block;
   overflow: hidden;
   cursor: pointer;
   position: relative;
-  margin-bottom: -7px;
 
   background-color: ${theme("background")};
   transition: background-color 0.3s ease;
@@ -43,34 +52,29 @@ const Hoverer = styled.div`
   }
 `;
 
-const Hover = ({ children }) => (
-  <Actor>
-    <Opacitier>{children}</Opacitier>
-
-    <Hoverer />
-  </Actor>
-);
-
-const A = styled.a`
-  text-decoration: none;
+const Title = styled.span`
+  font-family: Rubik;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
 
   color: ${theme("text")};
   transition: color 0.3s ease;
 `;
 
-const isAbsolute = url => /^[a-z][a-z0-9+.-]*:/.test(url);
-const getLinkProps = link =>
-  isAbsolute(link)
-    ? { href: link, target: "_blank" }
-    : { to: link, as: GatsbyLink };
+const Preview = ({ title, description, href, to }) => (
+  <Actor {...getLinkProps(href || to)}>
+    <Container>
+      <Opacitier>
+        <Title>{title}</Title>
+      </Opacitier>
 
-const Link = ({ href, to, children, ...props }) => (
-  <A {...getLinkProps(href || to)}>
-    <Hover>
-      <Font>{children}</Font>
-    </Hover>
-  </A>
+      <Hoverer />
+    </Container>
+    <Text my="8px" mb={16}>
+      {description}
+    </Text>
+  </Actor>
 );
 
-export { getLinkProps };
-export default Link;
+export default Preview;

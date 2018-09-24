@@ -1,3 +1,4 @@
+require("dotenv").config();
 const path = require("path");
 
 module.exports = {
@@ -22,6 +23,17 @@ module.exports = {
       resolve: "gatsby-plugin-layout",
       options: {
         component: require.resolve("./src/components/Layout")
+      }
+    },
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "GitHub",
+        fieldName: "github",
+        url: "https://api.github.com/graphql",
+        headers: {
+          Authorization: `bearer ${process.env.GITHUB_TOKEN}`
+        }
       }
     }
   ]

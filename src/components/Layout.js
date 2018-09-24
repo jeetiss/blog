@@ -24,7 +24,7 @@ const Layout = ({ location, children }) => (
   <Fragment>
     <Helmet>
       <link
-        href="https://fonts.googleapis.com/css?family=Rubik&amp;subset=cyrillic"
+        href="https://fonts.googleapis.com/css?family=Rubik:400,500&amp;subset=cyrillic"
         rel="stylesheet"
       />
     </Helmet>
@@ -48,6 +48,10 @@ const Layout = ({ location, children }) => (
                   <Tabs>
                     <Tab as={Link} {...linkProps("/", location)}>
                       Обо мне
+                    </Tab>
+
+                    <Tab as={Link} {...linkProps("/projects/", location)}>
+                      Проекты
                     </Tab>
                   </Tabs>
                 </Flex>

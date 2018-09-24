@@ -6,6 +6,7 @@ import theme from "../theme";
 
 const Font = system(
   {
+    tag: 'span',
     fontFamily: 'Rubik',
     fontSize: 16,
     lineHeight: '24px'
