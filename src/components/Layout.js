@@ -5,6 +5,7 @@ import { Toggle, Compose } from "react-powerplug/dist/react-powerplug.umd";
 import { Link } from "gatsby";
 import { Tab, Tabs } from "./Tabs";
 import { Flex, Box } from "./Grid";
+import Dark from "./Dark";
 import MDXProvider from "./MDXProvider";
 import GlobalStyle from "./GlobalStyle";
 
@@ -38,12 +39,11 @@ const Layout = ({ location, children }) => (
             <Flex justifyContent="center">
               <Flex flexDirection="column" flex="0 1 800px" px={16}>
                 <Flex mt={32} justifyContent="flex-end" alignItems="center">
-                  {!isPropd && (
-                    <Flex flex="1">
-                      <button onClick={tgDark}>dark</button>
-                      <button onClick={tgXRay}>x-ray</button>
-                    </Flex>
-                  )}
+                  <Flex flex="1">
+                    <Dark onClick={tgDark} on={dark} />
+
+                    {!isPropd && <button onClick={tgXRay}>x-ray</button>}
+                  </Flex>
 
                   <Tabs>
                     <Tab as={Link} {...linkProps("/", location)}>
