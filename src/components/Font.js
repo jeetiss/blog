@@ -13,7 +13,11 @@ const Font = system(
   },
   fontFamily,
   fontSize,
-  lineHeight
+  lineHeight,
+  props => css`
+    color: ${theme('text')(props)};
+    transition: color ease 0.3s;
+  `,
 );
 
 const Text = system(

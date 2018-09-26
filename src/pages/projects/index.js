@@ -1,9 +1,15 @@
 import React from "react";
 import { graphql } from "gatsby";
+import Font from "components/Font";
+import { Box } from "components/Grid";
 import Preview from "components/Preview";
 
 export default ({ data }) => (
   <>
+    <Box mt={16}>
+      <Font>oпенсорс</Font>
+    </Box>
+
     {data.github.viewer.repositoriesContributedTo.nodes
       .map(rep => ({
         href: rep.url,
