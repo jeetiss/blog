@@ -71,7 +71,7 @@ const Preview = ({ title, description, href, to }) => (
 
       <Hoverer />
     </Container>
-    <Text my="8px" mb={16}>
+    <Text my="8px" mb={32}>
       {description}
     </Text>
   </Actor>
