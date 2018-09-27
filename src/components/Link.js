@@ -4,7 +4,7 @@ import Font from "./Font";
 import styled from "styled-components";
 import theme from "../theme";
 
-const Actor = styled.div`
+const Actor = styled.span`
   display: inline-block;
   overflow: hidden;
   cursor: pointer;
@@ -24,7 +24,7 @@ const Opacitier = styled.span`
   }
 `;
 
-const Hoverer = styled.div`
+const Hoverer = styled.span`
   position: absolute;
   width: 100%;
   height: 100%;

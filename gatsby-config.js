@@ -4,7 +4,14 @@ const path = require("path");
 module.exports = {
   pathPrefix: "/",
   plugins: [
-    "gatsby-plugin-styled-components",
+    {
+      resolve: "gatsby-plugin-styled-components",
+      options: {
+        displayName: false,
+        fileName: false,
+        pure: true
+      }
+    },
     "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-mdx",
