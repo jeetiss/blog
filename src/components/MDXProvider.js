@@ -1,11 +1,13 @@
 import React, { Fragment } from "react";
 import { MDXProvider } from "@mdx-js/tag";
-import { Text } from "./Font";
+import { Text, H1, H2 } from "./Font";
 import { List, Item } from "./List";
 import Link from "./Link";
 
 const components = {
   wrapper: Fragment,
+  h1: H1,
+  h2: H2,
   p: Text,
   a: Link,
   ul: List,

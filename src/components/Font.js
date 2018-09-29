@@ -1,42 +1,84 @@
 import system from "../system";
-import { css } from 'styled-components'
-import { fontFamily, fontSize, lineHeight, space } from "styled-system";
-import theme from "../theme";
-
-
-const Font = system(
-  {
-    tag: 'span',
-    fontFamily: 'Rubik',
-    fontSize: 16,
-    lineHeight: '24px'
-  },
+import { css } from "styled-components";
+import {
   fontFamily,
   fontSize,
   lineHeight,
-  props => css`
-    color: ${theme('text')(props)};
-    transition: color ease 0.3s;
-  `,
+  fontWeight,
+  space
+} from "styled-system";
+import theme from "../theme";
+
+const Font = system(
+  {
+    tag: "span",
+    fontFamily: "Fira Sans",
+    fontSize: 16,
+    lineHeight: "24px"
+  },
+  fontFamily,
+  fontSize,
+  lineHeight
 );
 
-const Text = system(
+const H1 = system(
   {
-    tag: 'p',
-    fontFamily: 'Rubik',
-    fontSize: 16,
-    lineHeight: '24px',
-    my: 16,
+    tag: "h1",
+    fontFamily: "Fira Sans",
+    fontSize: 24,
+    lineHeight: "32px",
+    my: "8px"
   },
   fontFamily,
   fontSize,
   lineHeight,
   space,
   props => css`
-    color: ${theme('text')(props)};
+    color: ${theme("interactive")(props)};
     transition: color ease 0.3s;
-  `,
+  `
 );
 
-export {Text, Font}
+const H2 = system(
+  {
+    tag: "h2",
+    fontFamily: "Fira Sans",
+    fontSize: 16,
+    lineHeight: "24px",
+    fontWeight: 300,
+    my: "8px",
+    css: css`
+      letter-spacing: 0.02em;
+    `
+  },
+  fontWeight,
+  fontFamily,
+  fontSize,
+  lineHeight,
+  space,
+  props => css`
+    color: ${theme("interactive")(props)};
+    transition: color ease 0.3s;
+  `
+);
+
+const Text = system(
+  {
+    tag: "p",
+    fontFamily: "Fira Sans",
+    fontSize: 16,
+    lineHeight: "24px",
+    my: 16
+  },
+  fontFamily,
+  fontSize,
+  lineHeight,
+  space,
+  props => css`
+    color: ${theme("text")(props)};
+    transition: color ease 0.3s;
+  `
+);
+
+export { Text, Font, H1, H2 };
 export default Font;

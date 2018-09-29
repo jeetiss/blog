@@ -15,12 +15,12 @@ const Actor = styled.span`
   transition: background-color 0.3s ease;
 `;
 
-const Opacitier = styled.span`
-  opacity: 0.6;
-  transition: opacity 0.1s ease;
+const Colorier = styled.span`
+  color: ${theme('interactive')};
+  transition: color 0.1s ease;
 
   ${Actor}:hover & {
-    opacity: 1;
+    color: ${theme('text')};
   }
 `;
 
@@ -45,7 +45,7 @@ const Hoverer = styled.span`
 
 const Hover = ({ children }) => (
   <Actor>
-    <Opacitier>{children}</Opacitier>
+    <Colorier>{children}</Colorier>
 
     <Hoverer />
   </Actor>
@@ -53,9 +53,6 @@ const Hover = ({ children }) => (
 
 const A = styled.a`
   text-decoration: none;
-
-  color: ${theme("text")};
-  transition: color 0.3s ease;
 `;
 
 const isAbsolute = url => /^[a-z][a-z0-9+.-]*:/.test(url);

@@ -7,7 +7,7 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
-  font-family: Rubik;
+  font-family: Fira Sans;
   font-size: 16px;
   line-height: 24px;
 

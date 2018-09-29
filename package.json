@@ -10,9 +10,13 @@
     "deploy": "gh-pages -d public -b master"
   },
   "dependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.0.0",
     "@mdx-js/loader": "^0.15.2",
     "@mdx-js/mdx": "^0.15.2",
+    "babel-plugin-gather-exports": "0.0.1",
     "babel-plugin-styled-components": "^1.7.1",
     "core-js": "^2.5.7",
     "gatsby": "^2.0.6",
@@ -22,6 +26,7 @@
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-root-import": "^2.0.4",
     "gatsby-plugin-styled-components": "^3.0.0",
+    "gatsby-source-filesystem": "^2.0.1",
     "gatsby-source-graphql": "^2.0.2",
     "gh-pages": "^2.0.0",
     "loader-utils": "^1.1.0",

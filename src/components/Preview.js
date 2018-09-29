@@ -12,6 +12,7 @@ const Actor = styled.a`
   align-items: flex-start;
 
   margin: 16px 0;
+  max-width: 528px;
 `;
 
 const Container = styled.div`
@@ -53,10 +54,12 @@ const Hoverer = styled.div`
 `;
 
 const Title = styled.span`
-  font-family: Rubik;
+  font-family: Fira Sans;
   font-size: 24px;
   line-height: 32px;
-  font-weight: 500;
+  font-weight: 600;
+
+  text-transform: capitalize;
 
   color: ${theme("text")};
   transition: color 0.3s ease;

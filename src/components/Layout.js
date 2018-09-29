@@ -12,20 +12,37 @@ import GlobalStyle from "./GlobalStyle";
 const isPropd = process.env.NODE_ENV === "production";
 
 const themes = [
-  { text: "black", background: "white", hover: "white" },
-  { text: "white", background: "black", hover: "white" }
+  {
+    text: "#121212",
+    background: "#FEFEFE",
+    interactive: "#919191",
+    hover: "white"
+  },
+  {
+    text: "#FEFEFE",
+    background: "#121212",
+    interactive: "#919191",
+    hover: "white"
+  }
 ];
 
+const compare = (to, location) =>
+  typeof location === "function" ? location(to) : to === location.pathname;
+
 const linkProps = (to, location) => ({
+  as: Link,
   to: to,
-  active: to === location.pathname ? true : undefined
+  active: compare(to, location) ? true : undefined
 });
+
+const isBlog = location => to =>
+  location.pathname.startsWith("/posts/") || location.pathname === to;
 
 const Layout = ({ location, children }) => (
   <Fragment>
     <Helmet>
       <link
-        href="https://fonts.googleapis.com/css?family=Rubik:400,500&amp;subset=cyrillic"
+        href="https://fonts.googleapis.com/css?family=Fira+Sans:400,600&amp;subset=cyrillic"
         rel="stylesheet"
       />
     </Helmet>
@@ -46,13 +63,11 @@ const Layout = ({ location, children }) => (
                   </Flex>
 
                   <Tabs>
-                    <Tab as={Link} {...linkProps("/", location)}>
-                      Обо мне
-                    </Tab>
+                    <Tab {...linkProps("/", isBlog(location))}>Блог</Tab>
 
-                    <Tab as={Link} {...linkProps("/projects/", location)}>
-                      Проекты
-                    </Tab>
+                    <Tab {...linkProps("/projects/", location)}>Проекты</Tab>
+
+                    <Tab {...linkProps("/about/", location)}>Обо мне</Tab>
                   </Tabs>
                 </Flex>
 

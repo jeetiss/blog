@@ -9,7 +9,7 @@ const Tab = styled.button`
 
   cursor: pointer;
 
-  font-family: Rubik;
+  font-family: Fira Sans;
   font-size: 16px;
   line-height: 24px;
 
