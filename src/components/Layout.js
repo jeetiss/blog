@@ -41,7 +41,7 @@ const Layout = ({ location, children }) => (
 
             <Flex justifyContent="center">
               <Flex flexDirection="column" flex="0 1 800px" px={16}>
-                <Flex mt={32} justifyContent="flex-end" alignItems="center">
+                <Flex mt={40} justifyContent="flex-end" alignItems="center">
                   <Flex flex="1">
                     <Dark onClick={tgDark} on={dark} />
 
@@ -57,7 +57,7 @@ const Layout = ({ location, children }) => (
                   </Tabs>
                 </Flex>
 
-                <Box my={16}>
+                <Box my={32}>
                   <MDXProvider>{children}</MDXProvider>
                 </Box>
               </Flex>

@@ -5,7 +5,6 @@ import { H2, Low } from "components/Font";
 import Preview from "components/Preview";
 import Badge from "components/Badge";
 import Star from "components/Star";
-import Button from "components/Button";
 
 const work = [
   {
