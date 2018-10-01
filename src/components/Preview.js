@@ -21,7 +21,7 @@ const Container = styled.div`
   cursor: pointer;
   position: relative;
 
-  background-color: ${theme("background")};
+  background-color: ${theme("colors.background")};
   transition: background-color 0.3s ease;
 `;
 
@@ -42,7 +42,7 @@ const Hoverer = styled.div`
   top: 0;
 
   pointer-events: none;
-  background-color: ${theme("hover")};
+  background-color: ${theme("colors.hover")};
   mix-blend-mode: difference;
   transform: translateX(-101%);
   transform-origin: 0%;
@@ -61,7 +61,7 @@ const Title = styled.span`
 
   text-transform: capitalize;
 
-  color: ${theme("text")};
+  color: ${theme("colors.text")};
   transition: color 0.3s ease;
 `;
 

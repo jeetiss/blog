@@ -5,7 +5,7 @@ import { Flex } from "./Grid";
 import theme from "../theme";
 
 const Tab = styled.button`
-  color: ${theme("text")};
+  color: ${theme("colors.text")};
 
   cursor: pointer;
 
@@ -39,7 +39,7 @@ const Reffer = styled.div`
 const TabsContainer = styled.div`
   position: relative;
 
-  background-color: ${theme("background")};
+  background-color: ${theme("colors.background")};
   transition: background-color ease 0.3s;
 
   display: flex;
@@ -60,7 +60,7 @@ const Caret = styled.div`
   height: 100%;
   width: 1px;
 
-  background-color: ${theme("hover")};
+  background-color: ${theme("colors.hover")};
   mix-blend-mode: difference;
 
   transform-origin: left center;

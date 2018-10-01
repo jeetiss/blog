@@ -34,7 +34,7 @@ const H1 = system(
   lineHeight,
   space,
   props => css`
-    color: ${theme("interactive")(props)};
+    color: ${theme("colors.interactive")(props)};
     transition: color ease 0.3s;
   `
 );
@@ -57,7 +57,7 @@ const H2 = system(
   lineHeight,
   space,
   props => css`
-    color: ${theme("interactive")(props)};
+    color: ${theme("colors.interactive")(props)};
     transition: color ease 0.3s;
   `
 );
@@ -75,7 +75,7 @@ const Text = system(
   lineHeight,
   space,
   props => css`
-    color: ${theme("text")(props)};
+    color: ${theme("colors.text")(props)};
     transition: color ease 0.3s;
   `
 );

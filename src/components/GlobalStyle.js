@@ -29,17 +29,19 @@ const xRay = props =>
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    background-color: ${theme("background")};
+    color: ${theme("colors.text")};
+    background-color: ${theme("colors.background")};
 
-    transition: background-color 0.3s ease;
+    transition:
+      background-color ${theme("animations.duration.normal")} ease,
+      color ${theme("animations.duration.normal")} ease;
 
     ${xRay}
   }
 
   ::selection {
-    color: ${theme("background")};
-    background-color: ${theme("text")};
-    transition: color 0.3s ease, background-color 0.3s ease;
+    color: ${theme("colors.background")}
+    background-color: ${theme("colors.interactive")};
   }
 `;
 

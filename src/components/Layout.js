@@ -8,23 +8,9 @@ import { Flex, Box } from "./Grid";
 import Dark from "./Dark";
 import MDXProvider from "./MDXProvider";
 import GlobalStyle from "./GlobalStyle";
+import { themes } from "../theme";
 
 const isPropd = process.env.NODE_ENV === "production";
-
-const themes = [
-  {
-    text: "#121212",
-    background: "#FEFEFE",
-    interactive: "#919191",
-    hover: "white"
-  },
-  {
-    text: "#FEFEFE",
-    background: "#121212",
-    interactive: "#919191",
-    hover: "white"
-  }
-];
 
 const compare = (to, location) =>
   typeof location === "function" ? location(to) : to === location.pathname;

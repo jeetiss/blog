@@ -11,7 +11,7 @@ const Item = styled.li`
   font-size: 16px;
   line-height: 24px;
 
-  color: ${theme("text")};
+  color: ${theme("colors.text")};
   transition: color 0.3s ease;
 `;
 
