@@ -45,9 +45,9 @@ const style = props => {
     default:
     case "primary":
       return css`
+        color: #fefefe;
         border-color: ${theme("colors.interactive")(props)};
         background-color: ${theme("colors.interactive")(props)};
-        color: ${theme("colors.background")(props)};
 
         &:hover {
           border-color: ${theme("colors.hover")(props)};

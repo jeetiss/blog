@@ -20,7 +20,7 @@ const Badge = styled.span`
   border-radius: 5px;
   vertical-align: top;
 
-  color: ${theme('colors.background')};
+  color: #fefefe;
   background-color: ${theme('colors.low')};
 `
 
