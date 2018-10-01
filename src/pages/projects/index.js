@@ -5,6 +5,7 @@ import { H2, Low } from "components/Font";
 import Preview from "components/Preview";
 import Badge from "components/Badge";
 import Star from "components/Star";
+import Button from "components/Button";
 
 const work = [
   {
@@ -51,7 +52,7 @@ const work = [
   }
 ];
 
-const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1);
 
 export default ({ data }) => (
   <>
@@ -72,7 +73,7 @@ export default ({ data }) => (
         title: capitalize(rep.name),
         badge: (
           <Badge>
-            <Star style={{margin: '5px 5px 0 0'}}/>
+            <Star style={{ margin: "5px 5px 0 0" }} />
             {rep.stargazers.totalCount}
           </Badge>
         )
