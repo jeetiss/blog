@@ -9,7 +9,7 @@ const Tab = ({ active, ...props }) => (
 const Tabs = ({ children }) => (
   <Flex mr="-8px">
     {Children.toArray(children).map((child, index) => (
-      <Box key={index} ml={32}>
+      <Box key={index} ml={[16,32]}>
         {child}
       </Box>
     ))}
