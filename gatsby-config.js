@@ -20,6 +20,7 @@ module.exports = {
       }
     },
     "gatsby-plugin-react-helmet",
+    "gatsby-plugin-no-sourcemaps",
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
