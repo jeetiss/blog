@@ -1,64 +1,81 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { Box } from "components/Grid";
-import { H2 } from 'components/Font';
+import { H2, Low } from "components/Font";
 import Preview from "components/Preview";
+import Badge from "components/Badge";
+import Star from "components/Star";
 
 const work = [
   {
-    href: 'https://uploadcare.com/',
-    title: 'Pagedetox.com',
-    description: `Запустил pagedetox.`
+    to: "https://uploadcare.com/",
+    title: "Pagedetox.com",
+    description: `Запустил pagedetox.`,
+    date: "март 2018 — сентябрь 2018"
   },
   {
-    href: 'https://jsweekdays.github.io/rnd.js/',
+    to: "https://jsweekdays.github.io/rnd.js/",
     title: "RND.JS",
     description: `Сделал лендинг для локального митапа, на его основе сделал 
-    генерацию контента для социальных сетей с помощью puppeteer.`
+    генерацию контента для социальных сетей с помощью puppeteer.`,
+    date: "август 2018"
   },
   {
-    href: 'https://jsweekdays.github.io/rnd.js/',
+    to: "https://jeetiss.github.io/spizzhenyjlendos/",
     title: "Персональный сайт",
     description: `Заверстал страничку с кучей анимаций на реакте с поддержкой мобилки,
-    дизайн взял у Артема Тарадаша.`
+    дизайн взял у Артема Тарадаша.`,
+    date: "октябрь 2017"
   },
   {
-    href: 'https://riders.co/ru/longboard',
+    to: "https://riders.co/ru/longboard",
     title: "Riders​​.co",
     description: `Делал респонсив компоненты. Взаимодействовал с API
-    бекенда с помощью саг.`
+    бекенда с помощью саг.`,
+    date: "август 2017 - октябрь 2017"
   },
   {
-    href: 'https://statzilla.ru/',
+    to: "https://statzilla.ru/",
     title: "Statzilla​​.ru",
     description: `Делал автоматические скрипты для сбора данных с 
-    интернета. Использовал puppeteer, phantomjs и selenium.`
+    интернета. Использовал puppeteer, phantomjs и selenium.`,
+    date: "март 2017 — июль 2017"
   },
   {
-    href: 'https://tradingview.com/chart',
+    to: "https://tradingview.com/chart",
     title: "Tradingview.com​​",
     description: `Внедрял Webpack, делал API для интеграции брокеров с
     существующей кодовой базой, добавил пару брокеров, улучшал
-    ui для торговой платформы.`
+    ui для торговой платформы.`,
+    date: "июль 2015 — ноябрь 2016"
   }
 ];
+
+const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
 export default ({ data }) => (
   <>
     {work
+      .map(data => ({ ...data, footer: <Low>{data.date}</Low> }))
       .map((props, i) => (
         <Preview {...props} key={i} />
       ))}
 
-    <Box mt={64}>
+    <Box mt={40} mb={16}>
       <H2>Опенсорс</H2>
     </Box>
 
     {data.github.viewer.repositoriesContributedTo.nodes
       .map(rep => ({
-        href: rep.url,
+        to: rep.url,
         description: rep.description,
-        title: rep.name
+        title: capitalize(rep.name),
+        badge: (
+          <Badge>
+            <Star style={{margin: '5px 5px 0 0'}}/>
+            {rep.stargazers.totalCount}
+          </Badge>
+        )
       }))
       .map((props, i) => (
         <Preview {...props} key={i} />
@@ -80,6 +97,9 @@ export const query = graphql`
             name
             description
             url
+            stargazers {
+              totalCount
+            }
           }
         }
       }

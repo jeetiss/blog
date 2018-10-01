@@ -22,7 +22,7 @@ const active = props =>
         text-decoration: none;
       `;
 
-const A = styled.a`
+const StyledLink = styled.a`
   color: ${theme("colors.text")};
   transition: color ${theme("animations.duration.normal")} ease;
 
@@ -35,15 +35,15 @@ const getLinkProps = link =>
     ? { href: link, target: "_blank" }
     : { to: link, as: GatsbyLink };
 
-const Link = ({ href, to, children, ...props }) =>
-  console.log(Children.toArray(children).length) || (
-    <A
-      {...getLinkProps(href || to)}
-      single={Children.toArray(children).length <= 1}
-    >
-      {children}
-    </A>
-  );
+const Link = ({ href, to, children, ...props }) => (
+  <StyledLink
+    {...getLinkProps(href || to)}
+    {...props}
+    single={!Children.toArray(children).some(el => React.isValidElement(el))}
+  >
+    {children}
+  </StyledLink>
+);
 
 export { getLinkProps };
 export default Link;
