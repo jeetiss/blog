@@ -1,7 +1,7 @@
 const defaultTheme = {
   animations: {
     duration: {
-      normal: '3000ms',
+      normal: '300ms',
       fast: '100ms'
     }
   }
