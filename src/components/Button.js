@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 import theme from "../theme";
 
+// html[data-focus-source="${sourceType}"] ${selector}`
+
 const style = props => {
   switch (props.type) {
     case "cancel":
@@ -102,6 +104,10 @@ const Button = styled.button`
     transform: translateY(1px);
 
     transition: transform ${theme("animations.duration.fast")} ease;
+  }
+
+  html[data-focus-source="other"] &:focus {
+    box-shadow: 0px 0px 0px 3px ${theme("colors.focus")};
   }
 `;
 

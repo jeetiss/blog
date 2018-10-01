@@ -7,8 +7,10 @@ const active = props =>
   props.single
     ? css`
         text-decoration: underline;
+        outline: none;
 
-        &:hover {
+        &:hover,
+        html[data-focus-source="other"] &:focus {
           color: ${theme("colors.hover")(props)};
           transition: color ${theme("animations.duration.fast")(props)} ease;
         }

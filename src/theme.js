@@ -15,7 +15,8 @@ const whiteTheme = {
     background: "#FEFEFE",
     interactive: "#3760F2",
     hover: "#204EEF",
-    active: "#728CE8"
+    active: "#728CE8",
+    focus: 'rgba(55, 96, 242, 0.5)',
   }
 };
 
@@ -27,7 +28,8 @@ const blackTheme = {
     background: "#121212",
     interactive: "#3760F2",
     hover: "#204EEF",
-    active: "#728CE8"
+    active: "#728CE8",
+    focus: 'rgba(55, 96, 242, 0.5)',
   }
 };
 

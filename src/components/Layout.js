@@ -6,6 +6,7 @@ import { Link } from "gatsby";
 import { Tab, Tabs } from "./Tabs";
 import { Flex, Box } from "./Grid";
 import Dark from "./Dark";
+import FocusSource from "./FocusSource";
 import MDXProvider from "./MDXProvider";
 import GlobalStyle from "./GlobalStyle";
 import { themes } from "../theme";
@@ -25,7 +26,7 @@ const isBlog = location => to =>
   location.pathname.startsWith("/posts/") || location.pathname === to;
 
 const Layout = ({ location, children }) => (
-  <Fragment>
+  <FocusSource>
     <Helmet>
       <link
         href="https://fonts.googleapis.com/css?family=Fira+Sans:400,600&amp;subset=cyrillic"
@@ -66,7 +67,7 @@ const Layout = ({ location, children }) => (
         </ThemeProvider>
       )}
     </Compose>
-  </Fragment>
+  </FocusSource>
 );
 
 export default Layout;
