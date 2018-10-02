@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Button = styled.button`
   position: relative;
+  cursor: pointer;
   background-color: transparent;
 
   appearance: none;

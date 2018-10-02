@@ -29,6 +29,7 @@ const xRay = props =>
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
+    overflow-y: scroll;
     color: ${theme("colors.text")};
     background-color: ${theme("colors.background")};
 

@@ -73,6 +73,7 @@ const style = props => {
 
 const Button = styled.button`
   cursor: pointer;
+  user-select: none;
   display: block;
 
   height: 24px;
