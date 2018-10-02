@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import Preview from "components/Preview";
 import { Flex } from "components/Grid";
 import { Low } from "components/Font";
+import { pluralize, pluralizeDate } from "../plural";
 
 export const query = graphql`
   query {
@@ -34,11 +35,15 @@ export default ({ data }) =>
       footer: (
         <Flex justifyContent="space-between">
           <Low>
-            {dayjs(node.fields.date)
-              .locale("ru")
-              .format("D MMMM YYYY")}
+            {pluralizeDate(
+              dayjs(node.fields.date)
+                .locale("ru")
+                .format("D MMMM YYYY")
+            )}
           </Low>
-          <Low>{node.timeToRead} минут</Low>
+          <Low>
+            {pluralize(node.timeToRead, ":n минута", ":n минуты", ":n минут")}
+          </Low>
         </Flex>
       )
     }))
