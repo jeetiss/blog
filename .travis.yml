@@ -19,7 +19,7 @@ script:
 deploy:
   provider: pages
   skip-cleanup: true
-  keep-history: true
+  keep-history: false
   repo: jeetiss.github.io
   target-branch: master
   local-dir: ./public
