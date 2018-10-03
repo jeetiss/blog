@@ -72,6 +72,7 @@ const style = props => {
 };
 
 const Button = styled.button`
+  appearance: none;
   cursor: pointer;
   user-select: none;
   display: block;
@@ -81,7 +82,6 @@ const Button = styled.button`
   padding: 0 8px;
   margin: 0;
 
-  appearance: none;
   outline: none;
 
   border: 1px solid;

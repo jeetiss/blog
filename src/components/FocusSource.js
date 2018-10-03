@@ -19,15 +19,6 @@ const pointerEndEvents = [
 const focusEvents = ["focusin", "focusout"];
 
 let activePointers = 0;
-let activeKeys = 0;
-
-const handleKeyStartEvent = () => {
-  activeKeys++;
-};
-
-const handleKeyEndEvent = () => {
-  activeKeys = Math.max(activeKeys - 1, 0);
-};
 
 const handlePointerStartEvent = () => {
   activePointers++;
@@ -58,9 +49,6 @@ const subscribe = () => {
   // Subscribe only once
   if (subscribed) return;
   subscribed = true;
-
-  document.documentElement.addEventListener("keydown", handleKeyStartEvent);
-  document.documentElement.addEventListener("keyup", handleKeyEndEvent);
 
   pointerStartEvents.forEach(event => {
     document.documentElement.addEventListener(event, handlePointerStartEvent);
