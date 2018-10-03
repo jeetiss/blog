@@ -38,4 +38,4 @@ const pluralizeDate = date => {
   return `${day} ${pick(months, month)} ${year}`;
 };
 
-export { pluralize, pluralizeDate };
+module.exports = { pluralize, pluralizeDate };
