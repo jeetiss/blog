@@ -20,7 +20,7 @@ deploy:
   provider: pages
   skip-cleanup: true
   keep-history: false
-  repo: jeetiss.github.io
+  repo: jeetiss/jeetiss.github.io
   target-branch: master
   local-dir: ./public
   github-token: $GITHUB_TOKEN
