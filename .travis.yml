@@ -4,7 +4,7 @@ node_js:
 
 branches:
   only:
-  - dev
+  - master
 
 cache:
   directories:
@@ -19,9 +19,10 @@ script:
 deploy:
   provider: pages
   skip-cleanup: true
-  keep-history: false
-  local-dir: ./public
+  keep-history: true
+  repo: jeetiss.github.io
   target-branch: master
+  local-dir: ./public
   github-token: $GITHUB_TOKEN
   on:
-    branch: dev
+    branch: master
