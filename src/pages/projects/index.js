@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Box } from "components/Grid";
 import { H2, Low } from "components/Font";
 import Preview from "components/Preview";
 import Badge from "components/Badge";
@@ -61,9 +60,7 @@ export default ({ data }) => (
         <Preview {...props} key={i} />
       ))}
 
-    <Box mt={40} mb={16}>
-      <H2>Опенсорс</H2>
-    </Box>
+    <H2 mb={16}>Опенсорс</H2>
 
     {data.github.viewer.repositoriesContributedTo.nodes
       .map(rep => ({

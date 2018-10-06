@@ -32,7 +32,8 @@ const H2 = system(
     fontSize: 16,
     lineHeight: "24px",
     fontWeight: 400,
-    my: "8px",
+    mt: 40,
+    mb: '8px',
     css: css`
       letter-spacing: 0.02em;
     `
