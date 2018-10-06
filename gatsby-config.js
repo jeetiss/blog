@@ -30,7 +30,17 @@ module.exports = {
     {
       resolve: "gatsby-mdx",
       options: {
-        extensions: [".mdx", ".md"]
+        extensions: [".mdx", ".md"],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: 'language-',
+              inlineCodeMarker: '›',
+              aliases: {},
+            },
+          },
+        ],
       }
     },
     {

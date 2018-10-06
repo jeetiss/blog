@@ -41,7 +41,7 @@ const Layout = ({ location, children }) => (
             <GlobalStyle xray={xray} />
 
             <Flex justifyContent="center">
-              <Flex flexDirection="column" flex="0 1 800px" px={16}>
+              <Flex flexDirection="column" flex="0 1 800px" px={16} width={1}>
                 <Flex mt={40} justifyContent="flex-end" alignItems="center">
                   <Flex flex="1">
                     <Dark onClick={tgDark} on={dark} />
