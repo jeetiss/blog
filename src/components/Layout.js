@@ -5,7 +5,7 @@ import { Toggle, Compose } from "react-powerplug/dist/react-powerplug.umd";
 import { Link } from "gatsby";
 import { Tab, Tabs } from "./Tabs";
 import { Flex, Box } from "./Grid";
-import Dark from "./Dark";
+import Dark from "./Dark2";
 import FocusSource from "./FocusSource";
 import MDXProvider from "./MDXProvider";
 import GlobalStyle from "./GlobalStyle";
@@ -46,7 +46,7 @@ const Layout = ({ location, children }) => (
                   <Flex flex="1">
                     <Dark onClick={tgDark} on={dark} />
 
-                    {!isPropd && <button onClick={tgXRay}>x-ray</button>}
+                    {/* {!isPropd && <button onClick={tgXRay}>x-ray</button>} */}
                   </Flex>
 
                   <Tabs>
