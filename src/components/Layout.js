@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
+import { setConfig } from "react-hot-loader";
 import Helmet from "react-helmet";
 import { ThemeProvider } from "styled-components";
-import { Toggle, Compose } from "react-powerplug/dist/react-powerplug.umd";
 import { Link } from "gatsby";
 import { Tab, Tabs } from "./Tabs";
 import { Flex, Box } from "./Grid";
@@ -10,8 +10,10 @@ import FocusSource from "./FocusSource";
 import MDXProvider from "./MDXProvider";
 import GlobalStyle from "./GlobalStyle";
 import { themes } from "../theme";
+import useToggle from "../hooks/toggle";
 
-const isPropd = process.env.NODE_ENV === "production";
+const isProd = process.env.NODE_ENV === "production";
+!isProd && setConfig({ pureSFC: true });
 
 const compare = (to, location) =>
   typeof location === "function" ? location(to) : to === location.pathname;
@@ -25,49 +27,50 @@ const linkProps = (to, location) => ({
 const isBlog = location => to =>
   location.pathname.startsWith("/posts/") || location.pathname === to;
 
-const Layout = ({ location, children }) => (
-  <FocusSource>
-    <Helmet>
-      <link
-        href="https://fonts.googleapis.com/css?family=Fira+Sans:400,600&amp;subset=cyrillic"
-        rel="stylesheet"
-      />
-    </Helmet>
+const Layout = ({ location, children }) => {
+  const [dark, tgDark] = useToggle(false);
+  const [xray, tgXRay] = useToggle(false);
 
-    <Compose components={[Toggle, Toggle]}>
-      {({ on: dark, toggle: tgDark }, { on: xray, toggle: tgXRay }) => (
-        <ThemeProvider theme={themes[+dark]}>
-          <Fragment>
-            <GlobalStyle xray={xray} />
+  return (
+    <FocusSource>
+      <Helmet>
+        <link
+          href="https://fonts.googleapis.com/css?family=Fira+Sans:400,600&amp;subset=cyrillic"
+          rel="stylesheet"
+        />
+      </Helmet>
 
-            <Flex justifyContent="center">
-              <Flex flexDirection="column" flex="0 1 800px" px={16} width={1}>
-                <Flex mt={40} justifyContent="flex-end" alignItems="center">
-                  <Flex flex="1">
-                    <Dark onClick={tgDark} on={dark} />
+      <ThemeProvider theme={themes[+dark]}>
+        <>
+          <GlobalStyle xray={xray} />
 
-                    {/* {!isPropd && <button onClick={tgXRay}>x-ray</button>} */}
-                  </Flex>
+          <Flex justifyContent="center">
+            <Flex flexDirection="column" flex="0 1 800px" px={16} width={1}>
+              <Flex mt={40} justifyContent="flex-end" alignItems="center">
+                <Flex flex="1">
+                  <Dark onClick={tgDark} on={dark} />
 
-                  <Tabs>
-                    <Tab {...linkProps("/", isBlog(location))}>Блог</Tab>
-
-                    <Tab {...linkProps("/projects/", location)}>Проекты</Tab>
-
-                    <Tab {...linkProps("/about/", location)}>Обо мне</Tab>
-                  </Tabs>
+                  {!isProd && <button onClick={tgXRay}>x-ray</button>}
                 </Flex>
 
-                <Box my={32}>
-                  <MDXProvider>{children}</MDXProvider>
-                </Box>
+                <Tabs>
+                  <Tab {...linkProps("/", isBlog(location))}>Блог</Tab>
+
+                  <Tab {...linkProps("/projects/", location)}>Проекты</Tab>
+
+                  <Tab {...linkProps("/about/", location)}>Обо мне</Tab>
+                </Tabs>
               </Flex>
+
+              <Box my={32}>
+                <MDXProvider>{children}</MDXProvider>
+              </Box>
             </Flex>
-          </Fragment>
-        </ThemeProvider>
-      )}
-    </Compose>
-  </FocusSource>
-);
+          </Flex>
+        </>
+      </ThemeProvider>
+    </FocusSource>
+  );
+};
 
 export default Layout;
