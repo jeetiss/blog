@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql } from "gatsby";
+// import { graphql } from "gatsby";
 import { H2, Low } from "components/Font";
 import Preview from "components/Preview";
 import Badge from "components/Badge";
@@ -78,28 +78,28 @@ export default ({ data }) => (
         <Preview {...props} key={i} />
       ))}
   </>
-);
+// );
 
-export const query = graphql`
-  query {
-    github {
-      viewer {
-        repositoriesContributedTo(
-          contributionTypes: [COMMIT, PULL_REQUEST]
-          privacy: PUBLIC
-          orderBy: { direction: DESC, field: STARGAZERS }
-          first: 6
-        ) {
-          nodes {
-            name
-            description
-            url
-            stargazers {
-              totalCount
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+// export const query = graphql`
+//   query {
+//     github {
+//       viewer {
+//         repositoriesContributedTo(
+//           contributionTypes: [COMMIT, PULL_REQUEST]
+//           privacy: PUBLIC
+//           orderBy: { direction: DESC, field: STARGAZERS }
+//           first: 6
+//         ) {
+//           nodes {
+//             name
+//             description
+//             url
+//             stargazers {
+//               totalCount
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
