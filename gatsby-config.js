@@ -5,13 +5,6 @@ module.exports = {
   pathPrefix: "/",
   plugins: [
     {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        path: path.join(__dirname, "src/pages/posts"),
-        name: "pages"
-      }
-    },
-    {
       resolve: "gatsby-plugin-styled-components",
       options: {
         displayName: false,

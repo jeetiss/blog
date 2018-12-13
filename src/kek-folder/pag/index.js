@@ -1,34 +1,34 @@
 import React from "react";
-import { graphql } from "gatsby";
+// import { graphql } from "gatsby";
 import Preview from "components/Preview";
 import { Flex } from "components/Grid";
 import { Low } from "components/Font";
 import Badge from "components/Badge";
 import { pluralize } from "../plural";
 
-export const query = graphql`
-  query {
-    allMdx(limit: 1000) {
-      edges {
-        node {
-          timeToRead
+// export const query = graphql`
+//   query {
+//     allMdx(limit: 1000) {
+//       edges {
+//         node {
+//           timeToRead
 
-          fields {
-            slug
-            formattedDate
-          }
+//           fields {
+//             slug
+//             formattedDate
+//           }
 
-          frontmatter {
-            date
-            title
-            status
-            description
-          }
-        }
-      }
-    }
-  }
-`;
+//           frontmatter {
+//             date
+//             title
+//             status
+//             description
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
 
 export default ({ data, location }) => {
   const posts = data.allMdx.edges
