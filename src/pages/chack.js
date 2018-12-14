@@ -1,9 +1,17 @@
-import React, { createContext, useReducer, useContext, useEffect } from "react";
+import React, {
+  createContext,
+  useReducer,
+  useContext,
+  useEffect,
+  useState,
+  useRef
+} from "react";
 import Helmet from "react-helmet";
 import { eachDay, startOfToday, subDays, addDays, format } from "date-fns";
 import styled from "styled-components";
 import { Day, Weak, Task } from "components/Entites";
 import produce from "immer";
+import nanoid from "nanoid";
 import combineReducers from "../utils/combineReducers";
 
 const merge = key => (acc, { [key]: uniqProp, ...obj }) => ({
@@ -91,6 +99,7 @@ const App = () => {
     <storeContext.Provider value={[state, dispatch]}>
       <Layout>
         <Todos />
+        <TodoForm />
       </Layout>
     </storeContext.Provider>
   );
@@ -111,7 +120,9 @@ const Todos = () => {
       const checks = Object.keys(todos).reduce(
         (acc, todoId) => ({
           ...acc,
-          [todoId]: JSON.parse(window.localStorage.getItem(`checks-for-todo-${todoId}`))
+          [todoId]: JSON.parse(
+            window.localStorage.getItem(`checks-for-todo-${todoId}`)
+          )
         }),
         {}
       );
@@ -157,6 +168,8 @@ const Todos = () => {
 const Layout = styled.div`
   margin: auto;
   max-width: 960px;
+
+  padding-top: 160px;
 `;
 
 const Todo = ({ onClick, todo, checks, days }) => {
@@ -182,6 +195,36 @@ const Todo = ({ onClick, todo, checks, days }) => {
     </Weak>
   );
 };
+
+const TodoForm = () => {
+  const input = useRef();
+  const [adding, set] = useState(false);
+  const [state, dispatch] = useContext(storeContext);
+
+  return adding ? (
+    <form
+      onSubmit={e => {
+        e.preventDefault();
+        if (!input.current.value.trim()) {
+          return;
+        }
+
+        dispatch({
+          type: "ADD_TODO",
+          payload: { id: nanoid(5), name: input.current.value }
+        });
+        set(!adding);
+      }}
+    >
+      <input ref={input} />
+      <button type="submit">+</button>
+      <button onClick={() => set(!adding)}>-</button>
+    </form>
+  ) : (
+    <button onClick={() => set(!adding)}>add</button>
+  );
+};
+
 export default () => (
   <>
     <Helmet>

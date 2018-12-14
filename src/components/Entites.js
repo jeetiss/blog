@@ -76,7 +76,7 @@ const Weak = styled.div`
   cursor: pointer;
   display: flex;
 
-  margin-top: 160px;
+  margin-top: 8px;
 `;
 
 const Task = styled.div`
