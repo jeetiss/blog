@@ -29,6 +29,7 @@
     "gatsby-plugin-root-import": "^2.0.4",
     "gatsby-plugin-styled-components": "^3.0.3",
     "gh-pages": "^2.0.1",
+    "immer": "^1.8.2",
     "react": "next",
     "react-dom": "next",
     "react-helmet": "^5.2.0",

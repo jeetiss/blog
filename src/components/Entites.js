@@ -4,10 +4,12 @@ import styled from "styled-components";
 const DayBlock = styled.div`
   position: relative;
 
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
 
   margin: 0 4px;
+  border-radius: 4px;
+  background-color: #f4f4f4;
 
   &:last-child {
     margin-right: 0;
@@ -29,7 +31,6 @@ const Checked = styled.div`
   align-items: center;
 
   line-height: 21px;
-  color: hsla(0, 77%, 65%, 1);
 `;
 
 const Date = styled.div`
@@ -48,7 +49,7 @@ const Date = styled.div`
   font-family: Fira Sans;
   font-weight: 500;
   font-size: 12px;
-  color: hsla(0, 77%, 65%, 0.3);
+  color: hsla(0, 0%, 0%, 0.5);
 `;
 
 const Ya = props => (
@@ -59,11 +60,7 @@ const Ya = props => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path
-      d="M11 22.33L21 33l17-17"
-      stroke="hsla(0, 77%, 65%, 1)"
-      strokeWidth="4"
-    />
+    <path d="M11 22.33L21 33l17-17" stroke="black" strokeWidth="4" />
   </svg>
 );
 
@@ -77,13 +74,9 @@ const Day = ({ checked, day }) => (
 
 const Weak = styled.div`
   cursor: pointer;
-
   display: flex;
 
   margin-top: 160px;
-
-  border-radius: 4px;
-  background-color: hsla(0, 77%, 65%, 0.08);
 `;
 
 const Task = styled.div`
@@ -91,11 +84,13 @@ const Task = styled.div`
   align-items: center;
 
   box-sizing: border-box;
-  padding: 8px;
+  padding: 8px 16px;
   margin-right: 4px;
-  width: 136px;
+  width: 256px;
 
-  color: hsla(0, 77%, 65%, 1);
+  border-radius: 4px;
+  background-color: #f4f4f4;
+  color: black;
 
   font-family: Fira Sans;
   font-weight: 500;

@@ -3,6 +3,8 @@ import Helmet from "react-helmet";
 import { eachDay, startOfToday, subDays, addDays, format } from "date-fns";
 import styled from "styled-components";
 import { Day, Weak, Task } from "components/Entites";
+import produce from "immer";
+import combineReducers from "../utils/combineReducers";
 
 const merge = key => (acc, { [key]: uniqProp, ...obj }) => ({
   ...acc,
@@ -12,90 +14,174 @@ const merge = key => (acc, { [key]: uniqProp, ...obj }) => ({
 const initialState = {
   days: eachDay(subDays(startOfToday(), 3), addDays(startOfToday(), 3))
     .map(day => ({ raw: format(day, "X"), formatted: format(day, "DD") }))
-    .reduce(merge("raw"), {})
+    .reduce(merge("raw"), {}),
+  todos: { loaded: false },
+  checks: { loaded: false }
 };
 
-const StoreContext = createContext({});
+const storeContext = createContext({});
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "toggle_item": {
-      const item = { ...state.item };
-      const today = format(startOfToday(), "X");
+const todos = (state, action) =>
+  produce(state, draft => {
+    switch (action.type) {
+      case "LOAD_TODOS": {
+        draft.loaded = true;
+        draft.items = action.payload;
+        return;
+      }
+      case "ADD_TODO": {
+        draft.items[action.payload.id] = action.payload;
+        return;
+      }
+      default:
+        return draft;
+    }
+  });
 
-      if (item[today]) {
-        delete item[today];
-      } else {
-        item[today] = { checked: true };
+const checks = (state, action) =>
+  produce(state, draft => {
+    switch (action.type) {
+      case "LOAD_CHECKS": {
+        draft.loaded = true;
+        draft.items = action.payload;
+
+        return draft;
       }
 
-      return { ...state, item };
-    }
+      case "ADD_TODO": {
+        const { id } = action.payload;
 
-    case "loaded": {
-      return { ...state, item: action.payload };
-    }
+        draft.items[id] = {};
+        return draft;
+      }
 
-    default:
-      return state;
-  }
-}
+      case "TOGGLE_CHECK": {
+        const { id } = action.payload;
+        const today = format(startOfToday(), "X");
+
+        if (!draft.items[id]) {
+          draft.items[id] = {};
+        }
+
+        if (draft.items[id][today]) {
+          delete draft.items[id][today];
+        } else {
+          draft.items[id][today] = 1;
+        }
+
+        return draft;
+      }
+      default:
+        return draft;
+    }
+  });
+
+const finalReducer = combineReducers({ checks, todos, days: a => a });
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer((state, action) => {
+    const newState = finalReducer(state, action);
+
+    console.log(state, newState);
+
+    return newState;
+  }, initialState);
+
+  return (
+    <storeContext.Provider value={[state, dispatch]}>
+      <Layout>
+        <Todos />
+      </Layout>
+    </storeContext.Provider>
+  );
+};
+
+const Todos = () => {
+  const [state, dispatch] = useContext(storeContext);
 
   useEffect(() => {
     const id = setTimeout(() => {
+      const todos = JSON.parse(window.localStorage.getItem("chacks-todos"));
+
       dispatch({
-        type: "loaded",
-        payload:
-          JSON.parse(window.localStorage.getItem("chack_item-name")) || {}
+        type: "LOAD_TODOS",
+        payload: todos
+      });
+
+      const checks = Object.keys(todos).reduce(
+        (acc, todoId) => ({
+          ...acc,
+          [todoId]: JSON.parse(window.localStorage.getItem(`checks-for-todo-${todoId}`))
+        }),
+        {}
+      );
+
+      dispatch({
+        type: "LOAD_CHECKS",
+        payload: checks
       });
     }, 500);
 
     return () => clearTimeout(id);
   }, []);
 
-  return (
-    <StoreContext.Provider value={[state, dispatch]}>
-      <Layout>
-        <Table>{state.item ? <Item /> : <div>loading...</div>}</Table>
-      </Layout>
-    </StoreContext.Provider>
+  useEffect(
+    () => {
+      if (state.todos.items != null) {
+        window.localStorage.setItem(
+          `chacks-todos`,
+          JSON.stringify(state.todos.items)
+        );
+      }
+    },
+    [state.todos.items]
+  );
+
+  return state.todos.loaded && state.checks.loaded ? (
+    Object.values(state.todos.items).map(todo => (
+      <Todo
+        onClick={() =>
+          dispatch({ type: "TOGGLE_CHECK", payload: { id: todo.id } })
+        }
+        key={todo.id}
+        todo={todo}
+        checks={state.checks.items[todo.id]}
+        days={state.days}
+      />
+    ))
+  ) : (
+    <div>loading...</div>
   );
 };
 
-const Table = props => <div {...props} />;
-
 const Layout = styled.div`
   margin: auto;
-  max-width: 640px;
+  max-width: 960px;
 `;
 
-const Item = () => {
-  const [state, dispatch] = useContext(StoreContext);
-
+const Todo = ({ onClick, todo, checks, days }) => {
   useEffect(
     () => {
-      window.localStorage.setItem(
-        "chack_item-name",
-        JSON.stringify(state.item)
-      );
+      if (checks != null) {
+        window.localStorage.setItem(
+          `checks-for-todo-${todo.id}`,
+          JSON.stringify(checks)
+        );
+      }
     },
-    [state.item]
+    [checks]
   );
 
   return (
-    <Weak onClick={() => dispatch({ type: "toggle_item" })}>
-      <Task>Пописать на реакте</Task>
+    <Weak onClick={onClick}>
+      <Task>{todo.name}</Task>
 
-      {Object.entries(state.days).map(([key, day]) => (
-        <Day key={key} day={day.formatted} checked={state.item[key]} />
+      {Object.entries(days).map(([key, day]) => (
+        <Day key={key} day={day.formatted} checked={checks[key]} />
       ))}
     </Weak>
   );
 };
-
 export default () => (
   <>
     <Helmet>
