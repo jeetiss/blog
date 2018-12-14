@@ -110,7 +110,7 @@ const Todos = () => {
 
   useEffect(() => {
     const id = setTimeout(() => {
-      const todos = JSON.parse(window.localStorage.getItem("chacks-todos"));
+      const todos = JSON.parse(window.localStorage.getItem("chacks-todos")) || {};
 
       dispatch({
         type: "LOAD_TODOS",
@@ -125,7 +125,7 @@ const Todos = () => {
           )
         }),
         {}
-      );
+      ) 
 
       dispatch({
         type: "LOAD_CHECKS",
