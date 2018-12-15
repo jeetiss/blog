@@ -4,7 +4,6 @@ import React, {
 import Helmet from "react-helmet";
 import { eachDay, startOfToday, subDays, addDays, format } from "date-fns";
 import styled from "styled-components";
-import { FixedSizeList as List } from "react-window";
 import produce from "immer";
 import combineReducers from "../utils/combineReducers";
 import TodoForm from "../components/TodoForm";
