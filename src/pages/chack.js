@@ -1,18 +1,14 @@
 import React, {
   createContext,
-  useReducer,
-  useContext,
-  useEffect,
-  useState,
-  useRef
-} from "react";
+  useReducer} from "react";
 import Helmet from "react-helmet";
 import { eachDay, startOfToday, subDays, addDays, format } from "date-fns";
 import styled from "styled-components";
-import { Day, Weak, Task } from "components/Entites";
+import { FixedSizeList as List } from "react-window";
 import produce from "immer";
-import nanoid from "nanoid";
 import combineReducers from "../utils/combineReducers";
+import TodoForm from "../components/TodoForm";
+import Todos from "../components/Todos";
 
 const merge = key => (acc, { [key]: uniqProp, ...obj }) => ({
   ...acc,
@@ -27,7 +23,7 @@ const initialState = {
   checks: { loaded: false }
 };
 
-const storeContext = createContext({});
+export const storeContext = createContext({});
 
 const todos = (state, action) =>
   produce(state, draft => {
@@ -105,125 +101,12 @@ const App = () => {
   );
 };
 
-const Todos = () => {
-  const [state, dispatch] = useContext(storeContext);
-
-  useEffect(() => {
-    const id = setTimeout(() => {
-      const todos = JSON.parse(window.localStorage.getItem("chacks-todos")) || {};
-
-      dispatch({
-        type: "LOAD_TODOS",
-        payload: todos
-      });
-
-      const checks = Object.keys(todos).reduce(
-        (acc, todoId) => ({
-          ...acc,
-          [todoId]: JSON.parse(
-            window.localStorage.getItem(`checks-for-todo-${todoId}`)
-          )
-        }),
-        {}
-      ) 
-
-      dispatch({
-        type: "LOAD_CHECKS",
-        payload: checks
-      });
-    }, 500);
-
-    return () => clearTimeout(id);
-  }, []);
-
-  useEffect(
-    () => {
-      if (state.todos.items != null) {
-        window.localStorage.setItem(
-          `chacks-todos`,
-          JSON.stringify(state.todos.items)
-        );
-      }
-    },
-    [state.todos.items]
-  );
-
-  return state.todos.loaded && state.checks.loaded ? (
-    Object.values(state.todos.items).map(todo => (
-      <Todo
-        onClick={() =>
-          dispatch({ type: "TOGGLE_CHECK", payload: { id: todo.id } })
-        }
-        key={todo.id}
-        todo={todo}
-        checks={state.checks.items[todo.id]}
-        days={state.days}
-      />
-    ))
-  ) : (
-    <div>loading...</div>
-  );
-};
-
 const Layout = styled.div`
   margin: auto;
   max-width: 960px;
 
   padding-top: 160px;
 `;
-
-const Todo = ({ onClick, todo, checks, days }) => {
-  useEffect(
-    () => {
-      if (checks != null) {
-        window.localStorage.setItem(
-          `checks-for-todo-${todo.id}`,
-          JSON.stringify(checks)
-        );
-      }
-    },
-    [checks]
-  );
-
-  return (
-    <Weak onClick={onClick}>
-      <Task>{todo.name}</Task>
-
-      {Object.entries(days).map(([key, day]) => (
-        <Day key={key} day={day.formatted} checked={checks[key]} />
-      ))}
-    </Weak>
-  );
-};
-
-const TodoForm = () => {
-  const input = useRef();
-  const [adding, set] = useState(false);
-  const [state, dispatch] = useContext(storeContext);
-
-  return adding ? (
-    <form
-      onSubmit={e => {
-        e.preventDefault();
-        if (!input.current.value.trim()) {
-          return;
-        }
-
-        dispatch({
-          type: "ADD_TODO",
-          payload: { id: nanoid(5), name: input.current.value }
-        });
-        set(!adding);
-      }}
-    >
-      <input ref={input} />
-      <button type="submit">+</button>
-      <button onClick={() => set(!adding)}>-</button>
-    </form>
-  ) : (
-    <button onClick={() => set(!adding)}>add</button>
-  );
-};
 
 export default () => (
   <>

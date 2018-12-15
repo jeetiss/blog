@@ -4,10 +4,13 @@ import styled from "styled-components";
 const DayBlock = styled.div`
   position: relative;
 
+  grid-row: ${props => (props.row ? `${props.row} / span 1` : "auto")};
+  grid-column: ${props => (props.column ? `${props.column} / span 1` : "auto")};
+
   width: 80px;
   height: 80px;
+  flex: 0 0 80px;
 
-  margin: 0 4px;
   border-radius: 4px;
   background-color: #f4f4f4;
 
@@ -64,8 +67,8 @@ const Ya = props => (
   </svg>
 );
 
-const Day = ({ checked, day }) => (
-  <DayBlock>
+const Day = ({ row, column, checked, day }) => (
+  <DayBlock row={row} column={column}>
     <Checked>{checked ? <Ya /> : ""}</Checked>
 
     <Date>{day}</Date>
@@ -85,7 +88,7 @@ const Task = styled.div`
 
   box-sizing: border-box;
   padding: 8px 16px;
-  margin-right: 4px;
+  margin: 32px 8px 48px 0;
   width: 256px;
 
   border-radius: 4px;
