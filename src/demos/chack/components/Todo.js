@@ -1,20 +1,9 @@
 import React, { useEffect } from "react";
 import { eachDay, startOfToday, subDays, addDays, format } from "date-fns";
-import { Day, Weak, Task } from "components/Entites";
+import { Day, Weak, Task } from "./Entites";
 import styled from "styled-components";
 
 const Todo = ({ onClick, todo, checks, days }) => {
-  useEffect(
-    () => {
-      if (checks != null) {
-        window.localStorage.setItem(
-          `checks-for-todo-${todo.id}`,
-          JSON.stringify(checks)
-        );
-      }
-    },
-    [checks]
-  );
 
   return (
     <>

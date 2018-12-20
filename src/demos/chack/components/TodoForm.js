@@ -1,6 +1,6 @@
 import React, { useContext, useState, useRef } from "react";
 import nanoid from "nanoid";
-import { storeContext } from "../pages/chack";
+import { storeContext } from "../";
 
 const TodoForm = () => {
   const input = useRef();
