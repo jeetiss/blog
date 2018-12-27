@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { eachDay, startOfToday, subDays, addDays, format } from "date-fns";
-import { Day, Weak, Task } from "./Entites";
 import styled from "styled-components";
+import { Day, Weak, Task } from "./Entites";
+import Today from "./Today";
 
 const Todo = ({ onClick, todo, checks, days }) => {
 
@@ -39,7 +40,6 @@ const Todo = ({ onClick, todo, checks, days }) => {
               ))}
 
             <Today row={3} column={71}>
-              Today
             </Today>
           </Callendar>
         </Scroller>
@@ -55,27 +55,6 @@ const Scroller = styled.div`
 
 const Empty = styled.div`
   grid-row: ${props => (props.row ? `${props.row} / span 1` : "auto")};
-`;
-
-const Today = styled.div`
-  position: sticky;
-  left: 0;
-  right: 0;
-
-  grid-row: ${props => (props.row ? `${props.row} / span 1` : "auto")};
-  grid-column: ${props => (props.column ? `${props.column} / span 1` : "auto")};
-
-  border-radius: 4px;
-  background-color: #f4f4f4;
-  padding: 0 8px;
-
-  text-align: center;
-  line-height: 24px;
-
-  font-family: Fira Sans;
-  font-weight: 500;
-  font-size: 12px;
-  color: hsla(0, 0%, 0%, 0.5);
 `;
 
 const Month = styled.div`
