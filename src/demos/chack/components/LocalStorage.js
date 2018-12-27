@@ -12,7 +12,7 @@ const LocalStorage = ({ item, itemKey, onLoaded }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      onLoad(JSON.parse(window.localStorage.getItem(itemKey)));
+      onLoaded(JSON.parse(window.localStorage.getItem(itemKey)));
     });
   }, []);
 

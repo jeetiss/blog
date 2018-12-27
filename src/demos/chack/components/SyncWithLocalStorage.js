@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import LocalStorage from "./LocalStorage";
 import { storeContext } from "../";
 
@@ -19,7 +19,7 @@ const Sync = () => {
       />
 
       {state.todos.loaded &&
-        state.todos.items.map(todo => (
+        Object.values(state.todos.items).map(todo => (
           <LocalStorage
             key={todo.id}
             item={todo}
@@ -36,4 +36,4 @@ const Sync = () => {
   );
 };
 
-export default Sync
+export default Sync;
