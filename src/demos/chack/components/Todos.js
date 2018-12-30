@@ -17,6 +17,7 @@ const Todos = () => {
             todo={todo}
             checks={state.checks.items[todo.id]}
             days={state.days}
+            months={state.months}
           />
         ))
       ) : (

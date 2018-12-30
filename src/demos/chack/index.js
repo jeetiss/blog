@@ -1,22 +1,56 @@
 import React, { createContext, useReducer } from "react";
 import Helmet from "react-helmet";
-import { eachDay, startOfToday, subDays, addDays, format } from "date-fns";
+import {
+  eachDay,
+  startOfToday,
+  subDays,
+  addDays,
+  format,
+  startOfMonth,
+  endOfMonth,
+  differenceInDays
+} from "date-fns";
 import styled from "styled-components";
 import produce from "immer";
 import combineReducers from "./utils/combineReducers";
 import TodoForm from "./components/TodoForm";
 import Sync from "./components/SyncWithLocalStorage";
 import Todos from "./components/Todos";
+import eachMonth from "./utils/eachMonth";
 
-const merge = key => (acc, { [key]: uniqProp, ...obj }) => ({
-  ...acc,
-  [uniqProp]: obj
+const formatter = str => date => ({
+  value: format(date, str),
+  raw: date,
+  key: `${str}-${format(date, "X")}`
 });
 
+const isFirst = (index, arr) => arr.length > 0 && index === 0;
+const isLast = (index, arr) => arr.length - 1 === index;
+
+const generateDataForDates = (start, end) => {
+  const months = eachMonth(start, end)
+    .map(formatter("MMMM"))
+    .map((info, index, arr) => ({
+      ...info,
+      count: differenceInDays(
+        addDays(isLast(index, arr) ? end : endOfMonth(info.raw), 1),
+        isFirst(index, arr) ? start : startOfMonth(info.raw)
+      )
+    }));
+
+  const days = eachDay(
+    subDays(startOfToday(), 70),
+    addDays(startOfToday(), 30)
+  ).map(formatter("DD"));
+
+  return { days, months };
+};
+
 const initialState = {
-  days: eachDay(subDays(startOfToday(), 3), addDays(startOfToday(), 3))
-    .map(day => ({ raw: format(day, "X"), formatted: format(day, "DD") }))
-    .reduce(merge("raw"), {}),
+  ...generateDataForDates(
+    subDays(startOfToday(), 70),
+    addDays(startOfToday(), 30)
+  ),
   todos: { loaded: false },
   checks: { loaded: false }
 };
@@ -87,7 +121,12 @@ const checks = (state, action) =>
     }
   });
 
-const finalReducer = combineReducers({ checks, todos, days: a => a });
+const finalReducer = combineReducers({
+  checks,
+  todos,
+  days: a => a,
+  months: a => a
+});
 
 const App = () => {
   const [state, dispatch] = useReducer((state, action) => {
@@ -113,7 +152,7 @@ const Layout = styled.div`
   margin: auto;
   max-width: 960px;
 
-  padding-top: 160px;
+  padding: 160px 24px 0;
 `;
 
 export default App;

@@ -4,43 +4,27 @@ import styled from "styled-components";
 import { Day, Weak, Task } from "./Entites";
 import Today from "./Today";
 
-const Todo = ({ onClick, todo, checks, days }) => {
+const Todo = ({ onClick, todo, checks, days, months }) => {
+  console.log(days, months);
 
   return (
     <>
       <Weak onClick={onClick}>
-        <Task>{todo.name}</Task>
+        {/* <Task>{todo.name}</Task> */}
 
         <Scroller>
           <Callendar>
-            {eachDay(subDays(startOfToday(), 70), addDays(startOfToday(), 30))
-              .map(date => ({
-                date: format(date, "X"),
-                day: format(date, "DD"),
-                month: format(date, "MMMM")
-              }))
-              .map((date, index) => (
-                <>
-                  {date.day === "01" ? (
-                    <Month
-                      key={date.month + date.date}
-                      row={1}
-                      column={index + 1}
-                    >
-                      {date.month}
-                    </Month>
-                  ) : null}
-                  <Day
-                    key={date.date}
-                    day={date.day}
-                    row={2}
-                    checked={checks[date.date]}
-                  />
-                </>
-              ))}
+            {months.map(info => (
+              <Month key={info.key} count={info.count}>
+                {info.value}
+              </Month>
+            ))}
 
-            <Today row={3} column={71}>
-            </Today>
+            {days.map(info => (
+              <Day key={info.key} day={info.value} row={2} />
+            ))}
+
+            <Today row={3} column={71} />
           </Callendar>
         </Scroller>
       </Weak>
@@ -57,12 +41,15 @@ const Empty = styled.div`
   grid-row: ${props => (props.row ? `${props.row} / span 1` : "auto")};
 `;
 
-const Month = styled.div`
+const Month = ({ children, ...props }) => (
+  <BlockMonth {...props}>
+    <Stick>{children}</Stick>
+  </BlockMonth>
+);
+
+const Stick = styled.div`
   position: sticky;
   left: 0;
-
-  grid-row: ${props => (props.row ? `${props.row} / span 1` : "auto")};
-  grid-column: ${props => (props.column ? `${props.column} / span 1` : "auto")};
 
   border-radius: 4px;
   background-color: #f4f4f4;
@@ -71,10 +58,20 @@ const Month = styled.div`
   text-align: center;
   line-height: 24px;
 
+  box-sizing: border-box;
+  width: 80px;
+
   font-family: Fira Sans;
   font-weight: 500;
   font-size: 12px;
   color: hsla(0, 0%, 0%, 0.5);
+`;
+
+const BlockMonth = styled.div`
+  width: ${props => (props.count ? `calc(${props.count} * 88px - 8px)` : "unset")};
+
+  grid-column: ${props =>
+    props.count ? `auto / span ${props.count}` : "auto"};
 `;
 
 const Callendar = styled.div`

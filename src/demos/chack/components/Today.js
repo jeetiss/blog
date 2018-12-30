@@ -29,10 +29,10 @@ const Cover = styled.div`
 
   justify-self: ${props => (props.right ? 'end' : 'unset')};
 
-  margin: 0 4px;
+  margin: 4px;
 
   width: 16px;
-  height: 24px;
+  height: 16px;
   background-color: #f4f4f4;
 
   grid-row: ${props => (props.row ? `${props.row} / span 1` : "auto")};
