@@ -1,18 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { eachDay, startOfToday, subDays, addDays, format } from "date-fns";
 import styled from "styled-components";
 import { Day, Weak, Task } from "./Entites";
 import Today from "./Today";
 
 const Todo = ({ onClick, todo, checks, days, months }) => {
-  console.log(days, months);
+  const scrollerRef = useRef();
+
+  useEffect(() => {
+    if (scrollerRef.current) scrollerRef.current.scroll(88 * 66, 0);
+  }, scrollerRef);
 
   return (
     <>
-      <Weak onClick={onClick}>
-        {/* <Task>{todo.name}</Task> */}
+      <Weak>
+        <Task>{todo.name}</Task>
 
-        <Scroller>
+        <Scroller ref={scrollerRef}>
           <Callendar>
             {months.map(info => (
               <Month key={info.key} count={info.count}>
@@ -21,10 +25,14 @@ const Todo = ({ onClick, todo, checks, days, months }) => {
             ))}
 
             {days.map(info => (
-              <Day key={info.key} day={info.value} row={2} />
+              <Day onClick={onClick} key={info.key} day={info.value} row={2} />
             ))}
 
-            <Today row={3} column={71} />
+            <Today
+              row={3}
+              column={71}
+              onClick={() => scrollerRef.current.scroll(88 * 66, 0)}
+            />
           </Callendar>
         </Scroller>
       </Weak>
@@ -34,6 +42,7 @@ const Todo = ({ onClick, todo, checks, days, months }) => {
 
 const Scroller = styled.div`
   overflow: scroll;
+  scroll-behavior: smooth;
   flex: 1 1;
 `;
 
@@ -68,7 +77,8 @@ const Stick = styled.div`
 `;
 
 const BlockMonth = styled.div`
-  width: ${props => (props.count ? `calc(${props.count} * 88px - 8px)` : "unset")};
+  width: ${props =>
+    props.count ? `calc(${props.count} * 88px - 8px)` : "unset"};
 
   grid-column: ${props =>
     props.count ? `auto / span ${props.count}` : "auto"};
