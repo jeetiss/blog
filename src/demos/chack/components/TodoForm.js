@@ -26,8 +26,7 @@ const TodoForm = () => {
       <button onClick={() => set(!adding)}>-</button>
     </form>
   ) : (
-    // <button onClick={() => set(!adding)}>add</button>
-    null
+    <button onClick={() => set(!adding)}>add</button>
   );
 };
 

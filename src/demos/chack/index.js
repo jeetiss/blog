@@ -19,6 +19,7 @@ import eachMonth from "./utils/eachMonth";
 
 const formatter = str => date => ({
   value: format(date, str),
+  unix: format(date, "X"),
   raw: date,
   key: `${str}-${format(date, "X")}`
 });
@@ -51,7 +52,7 @@ const initialState = {
     addDays(startOfToday(), 30)
   ),
   todos: { loaded: false },
-  checks: { loaded: false }
+  checks: { loaded: false, items: {} }
 };
 
 export const storeContext = createContext({});

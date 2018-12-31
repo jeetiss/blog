@@ -22,7 +22,7 @@ const Sync = () => {
         Object.values(state.todos.items).map(todo => (
           <LocalStorage
             key={todo.id}
-            item={todo}
+            item={state.checks.items[todo.id]}
             itemKey={`checks-for-todo-${todo.id}`}
             onLoaded={checks =>
               dispatch({

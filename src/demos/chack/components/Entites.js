@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const DayBlock = styled.div`
   position: relative;
+  cursor: pointer;
 
   grid-row: ${props => (props.row ? `${props.row} / span 1` : "auto")};
   grid-column: ${props => (props.column ? `${props.column} / span 1` : "auto")};
@@ -38,6 +39,7 @@ const Checked = styled.div`
 
 const Date = styled.div`
   position: absolute;
+  pointer-events: none;
 
   width: 100%;
   height: 100%;
@@ -67,8 +69,8 @@ const Ya = props => (
   </svg>
 );
 
-const Day = ({ row, column, checked, day }) => (
-  <DayBlock row={row} column={column}>
+const Day = ({ onClick, row, column, checked, day }) => (
+  <DayBlock row={row} column={column} onClick={onClick}>
     <Checked>{checked ? <Ya /> : ""}</Checked>
 
     <Date>{day}</Date>
@@ -76,7 +78,6 @@ const Day = ({ row, column, checked, day }) => (
 );
 
 const Weak = styled.div`
-  cursor: pointer;
   display: flex;
 
   margin-top: 8px;

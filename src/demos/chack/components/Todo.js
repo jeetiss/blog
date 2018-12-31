@@ -24,7 +24,13 @@ const Todo = ({ onClick, todo, checks, days, months }) => {
             ))}
 
             {days.map(info => (
-              <Day onClick={onClick} key={info.key} day={info.value} row={2} />
+              <Day
+                onClick={onClick}
+                key={info.key}
+                day={info.value}
+                row={2}
+                checked={checks[info.unix]}
+              />
             ))}
 
             <Today
