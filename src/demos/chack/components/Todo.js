@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { eachDay, startOfToday, subDays, addDays, format } from "date-fns";
 import styled from "styled-components";
 import { Day, Weak, Task } from "./Entites";
 import Today from "./Today";
@@ -44,10 +43,6 @@ const Scroller = styled.div`
   overflow: scroll;
   scroll-behavior: smooth;
   flex: 1 1;
-`;
-
-const Empty = styled.div`
-  grid-row: ${props => (props.row ? `${props.row} / span 1` : "auto")};
 `;
 
 const Month = ({ children, ...props }) => (

@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Todo from "./Todo";
-import LocalStorage from "./LocalStorage";
 import { storeContext } from "../";
 
 const Todos = () => {

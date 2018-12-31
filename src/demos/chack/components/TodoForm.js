@@ -5,7 +5,7 @@ import { storeContext } from "../";
 const TodoForm = () => {
   const input = useRef();
   const [adding, set] = useState(false);
-  const [state, dispatch] = useContext(storeContext);
+  const [, dispatch] = useContext(storeContext);
 
   return adding ? (
     <form

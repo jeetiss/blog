@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from "react";
-import Helmet from "react-helmet";
 import {
   eachDay,
   startOfToday,
