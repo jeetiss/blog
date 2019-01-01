@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Block = styled.div`
+  cursor: pointer;
+
   position: sticky;
   left: 0;
   right: 0;
@@ -23,6 +25,8 @@ const Block = styled.div`
 `;
 
 const Cover = styled.div`
+  pointer-events: none;
+
   position: sticky;
   left: ${props => (props.left ? 'unset' : '56px')};
   right: ${props => (props.right ? 'unset' : '56px')};
@@ -39,9 +43,9 @@ const Cover = styled.div`
   grid-column: ${props => (props.column ? `${props.column} / span 1` : "auto")};
 `;
 
-const Today = props => (
+const Today = ({onClick, ...props}) => (
   <>
-    <Block {...props}>{"<- Today ->"}</Block>
+    <Block onClick={onClick} {...props}>{"<- Today ->"}</Block>
     <Cover {...props} left/>
     <Cover {...props} right/>
   </>
