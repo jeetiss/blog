@@ -10,39 +10,37 @@ const Todo = ({ onClick, todo, checks, days, months }) => {
     if (scrollerRef.current) scrollerRef.current.scroll(88 * 66, 0);
   }, scrollerRef);
 
-  return (
-    <>
-      <Weak>
-        <Task>{todo.name}</Task>
+  return checks ? (
+    <Weak>
+      <Task>{todo.name}</Task>
 
-        <Scroller ref={scrollerRef}>
-          <Callendar>
-            {months.map(info => (
-              <Month key={info.key} count={info.count}>
-                {info.value}
-              </Month>
-            ))}
+      <Scroller ref={scrollerRef}>
+        <Callendar>
+          {months.map(info => (
+            <Month key={info.key} count={info.count}>
+              {info.value}
+            </Month>
+          ))}
 
-            {days.map(info => (
-              <Day
-                onClick={onClick}
-                key={info.key}
-                day={info.value}
-                row={2}
-                checked={checks[info.unix]}
-              />
-            ))}
-
-            <Today
-              row={3}
-              column={71}
-              onClick={() => scrollerRef.current.scroll(88 * 66, 0)}
+          {days.map(info => (
+            <Day
+              onClick={onClick}
+              key={info.key}
+              day={info.value}
+              row={2}
+              checked={checks[info.unix]}
             />
-          </Callendar>
-        </Scroller>
-      </Weak>
-    </>
-  );
+          ))}
+
+          <Today
+            row={3}
+            column={71}
+            onClick={() => scrollerRef.current.scroll(88 * 66, 0)}
+          />
+        </Callendar>
+      </Scroller>
+    </Weak>
+  ) : null;
 };
 
 const Scroller = styled.div`

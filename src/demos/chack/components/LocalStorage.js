@@ -19,4 +19,22 @@ const LocalStorage = ({ item, itemKey, onLoaded }) => {
   return null;
 };
 
-export default LocalStorage
+const useLocalStorageSync = (state, setState, storageKey) => {
+  useEffect(() => {
+    setTimeout(() => {
+      setState(JSON.parse(window.localStorage.getItem(storageKey)));
+    });
+  }, []);
+
+  useEffect(
+    () => {
+      if (state != null) {
+        window.localStorage.setItem(storageKey, JSON.stringify(state));
+      }
+    },
+    [state]
+  );
+};
+
+export { useLocalStorageSync };
+export default LocalStorage;
