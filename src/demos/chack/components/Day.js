@@ -69,36 +69,15 @@ const Ya = props => (
   </svg>
 );
 
-const Day = ({ onClick, row, column, checked, day }) => (
-  <DayBlock row={row} column={column} onClick={onClick}>
-    <Checked>{checked ? <Ya /> : ""}</Checked>
+const Day = React.memo(
+  ({ onClick, row, column, checked, day }) => (
+    <DayBlock row={row} column={column} onClick={onClick}>
+      <Checked>{checked ? <Ya /> : ""}</Checked>
 
-    <Date>{day}</Date>
-  </DayBlock>
+      <Date>{day}</Date>
+    </DayBlock>
+  ),
+  (prev, next) => prev.checked === next.checked
 );
 
-const Weak = styled.div`
-  display: flex;
-
-  margin-top: 8px;
-`;
-
-const Task = styled.div`
-  display: flex;
-  align-items: center;
-
-  box-sizing: border-box;
-  padding: 8px 16px;
-  margin: 32px 8px 48px 0;
-  width: 256px;
-
-  border-radius: 4px;
-  background-color: #f4f4f4;
-  color: black;
-
-  font-family: Fira Sans;
-  font-weight: 500;
-  font-size: 21px;
-`;
-
-export { Day, Weak, Task };
+export { Day };

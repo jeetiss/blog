@@ -16,6 +16,7 @@ import TodoForm from "./components/TodoForm";
 import Sync from "./components/SyncWithLocalStorage";
 import Todos from "./components/Todos";
 import eachMonth from "./utils/eachMonth";
+import { diff } from 'deep-diff'
 
 const formatter = str => date => ({
   value: format(date, str),
@@ -85,12 +86,18 @@ const checks = (state, action) =>
       }
 
       case "LOAD_CHECKS": {
-        draft.loaded = true;
         draft.items = draft.items || {};
-
         draft.items[action.payload.todo.id] = action.payload.checks;
 
+        draft.loaded = draft.loaded || draft.countItems === Object.keys(draft.items).length
+
         return draft;
+      }
+
+      case "LOAD_TODOS": {
+        draft.countItems = Object.keys(action.payload).length
+
+        return draft
       }
 
       case "ADD_TODO": {
@@ -132,7 +139,9 @@ const App = () => {
   const [state, dispatch] = useReducer((state, action) => {
     const newState = finalReducer(state, action);
 
-    console.log(state, newState);
+    const differ = diff(state, newState)
+
+    console.log(differ);
 
     return newState;
   }, initialState);
