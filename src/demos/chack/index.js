@@ -6,8 +6,7 @@ import Sync from "./components/SyncWithLocalStorage";
 import TodoNames from "./components/TodoNames";
 import Scroller from "./components/Scroller";
 import Checks from "./components/Checks";
-import FirstBlock from "./components/FirstBlock";
-import { diff } from "deep-diff";
+import { Row, Column } from "./components/Blocks";
 import { initialState, todos, checks } from "./redux";
 
 export const storeContext = createContext({});
@@ -20,15 +19,7 @@ const finalReducer = combineReducers({
 });
 
 const App = () => {
-  const [state, dispatch] = useReducer((state, action) => {
-    const newState = finalReducer(state, action);
-
-    const differ = diff(state, newState);
-
-    console.log(differ);
-
-    return newState;
-  }, initialState);
+  const [state, dispatch] = useReducer(finalReducer, initialState);
 
   return (
     <storeContext.Provider value={[state, dispatch]}>
@@ -36,24 +27,23 @@ const App = () => {
         <Sync />
 
         {state.todos.loaded ? (
-          <FirstBlock>
-            <div>
-              {/* <Todos /> */}
+          <Row>
+            <Column>
               <TodoNames />
 
               {/* FormNameInput */}
-            </div>
+            </Column>
 
             {state.checks.loaded ? (
               <Scroller>
                 <Checks />
+
+                {/* FormTypeInput */}
               </Scroller>
             ) : (
               <div> Loading... </div>
             )}
-
-            {/* FormTypeInput */}
-          </FirstBlock>
+          </Row>
         ) : (
           <div> Loading... </div>
         )}
