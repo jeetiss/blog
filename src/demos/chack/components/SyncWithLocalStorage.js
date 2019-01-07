@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import LocalStorage, { useLocalStorageSync } from "./LocalStorage";
+import { useContext } from "react";
+import { useLocalStorageSync } from "./LocalStorage";
 import { storeContext } from "../";
 
 const Sync = () => {
