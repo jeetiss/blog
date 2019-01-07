@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { Day } from "./Day";
 import Today from "./Today";
 import { storeContext } from "../";
 
-const Checks = () => {
+const Checks = ({ scroll }) => {
   const [state, dispatch] = useContext(storeContext);
+
+  useEffect(scroll, []);
 
   return (
     <Callendar>
@@ -30,7 +32,7 @@ const Checks = () => {
       <Today
         row={Object.keys(state.todos.items).length + 2}
         column={71}
-        // onClick={() => scrollerRef.current.scroll(88 * 66, 0)}
+        onClick={scroll}
       />
     </Callendar>
   );

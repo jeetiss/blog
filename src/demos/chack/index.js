@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useRef } from "react";
 import styled from "styled-components";
 import combineReducers from "./utils/combineReducers";
 import TodoForm from "./components/TodoForm";
@@ -19,6 +19,7 @@ const finalReducer = combineReducers({
 });
 
 const App = () => {
+  const scrollerRef = useRef();
   const [state, dispatch] = useReducer(finalReducer, initialState);
 
   return (
@@ -35,8 +36,8 @@ const App = () => {
             </Column>
 
             {state.checks.loaded ? (
-              <Scroller>
-                <Checks />
+              <Scroller ref={scrollerRef}>
+                <Checks scroll={() => scrollerRef.current.scroll(88 * 66, 0)} />
 
                 {/* FormTypeInput */}
               </Scroller>
