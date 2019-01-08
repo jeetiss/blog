@@ -42,12 +42,6 @@ module.exports = {
         components: path.join(__dirname, "src/components"),
         pages: path.join(__dirname, "src/pages")
       }
-    },
-    {
-      resolve: "gatsby-plugin-layout",
-      options: {
-        component: require.resolve("./src/components/Layout")
-      }
     }
   ]
 };
