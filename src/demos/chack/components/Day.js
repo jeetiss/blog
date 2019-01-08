@@ -54,7 +54,7 @@ const Date = styled.div`
   font-family: Fira Sans;
   font-weight: 500;
   font-size: 12px;
-  color: hsla(0, 0%, 0%, 0.5);
+  color: hsla(0, 0%, 0%, 0.25);
 `;
 
 const Ya = props => (
