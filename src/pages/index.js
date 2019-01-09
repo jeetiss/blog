@@ -8,7 +8,23 @@ import { Text, Header } from "../components/Text";
 
 export default () => (
   <Layout>
-    <Flex py="30vh" flexDirection="column">
+    <Flex my={120} flexDirection="column">
+      <Box>
+        <Header>Анимация чекбокса</Header>
+      </Box>
+
+      <Box>
+        <Text>Идею взял c кодпена 🤷🏻‍♂️</Text>
+      </Box>
+
+      <Box>
+        <Link to="./checkbox">
+          <Video src="https://ucarecdn.com/0fee1cce-429c-42d0-b117-a4f88683f3e4/" />
+        </Link>
+      </Box>
+    </Flex>
+
+    <Flex my={120} flexDirection="column">
       <Box>
         <Header>Position sticky && grid layout</Header>
       </Box>
