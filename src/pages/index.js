@@ -10,6 +10,22 @@ export default () => (
   <Layout>
     <Flex my={120} flexDirection="column">
       <Box>
+        <Header>Лого RND.JS</Header>
+      </Box>
+
+      <Box>
+        <Text>Сделал анимированное лого для локального митапа</Text>
+      </Box>
+
+      <Box>
+        <Link to="./rndjs-logo">
+          <Video src="https://ucarecdn.com/deb737b1-e8ec-41b8-b265-a7a7ce6dbe20/" />
+        </Link>
+      </Box>
+    </Flex>
+
+    <Flex my={120} flexDirection="column">
+      <Box>
         <Header>Анимация чекбокса</Header>
       </Box>
 

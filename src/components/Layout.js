@@ -1,5 +1,4 @@
 import React from "react";
-import { setConfig } from "react-hot-loader";
 import Helmet from "react-helmet";
 import { createGlobalStyle } from "styled-components";
 
