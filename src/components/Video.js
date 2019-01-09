@@ -7,12 +7,13 @@ const Inner = styled.video`
 
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 16px 32px;
+  border: 1px solid rgba(0,0,0,.10);
 
   transition: box-shadow 0.3s ease;
 
   &:hover {
-    box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.25);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 16px 32px;
   }
 `;
 
