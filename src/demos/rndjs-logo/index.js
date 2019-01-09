@@ -3,7 +3,7 @@ import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { style, themeGet } from "styled-system";
 import Helmet from "react-helmet";
 
-const px = str => (window.Number.isFinite(str) ? `${str}px` : str);
+const px = str => (Number.isFinite(str) ? `${str}px` : str);
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -149,7 +149,7 @@ const textShadow = style({
   key: "shadows"
 });
 
-const Number = styled.div`
+const BigNumberSeven = styled.div`
   display: inline-block;
   color: ${themeGet("colors.secondary", "black")};
   font-family: 'Roboto', sans-serif;
@@ -271,7 +271,7 @@ const BgWithLogo = ({ children, theme }) => (
                 </Center>
               </Fullscreen>
 
-              <Number textShadow={themeGet("shadows")({ theme })}>7</Number>
+              <BigNumberSeven textShadow={themeGet("shadows")({ theme })}>7</BigNumberSeven>
 
               <div style={{ paddingBottom: "90vh" }} />
 
