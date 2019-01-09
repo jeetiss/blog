@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
-import App from "../demos/chack";
+import App from "../examples/chack";
 
 export default () => (
   <>

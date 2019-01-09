@@ -1,4 +1,3 @@
-require("dotenv").config();
 const path = require("path");
 
 module.exports = {
@@ -21,27 +20,12 @@ module.exports = {
       }
     },
     {
-      resolve: "gatsby-mdx",
+      resolve: `gatsby-source-filesystem`,
       options: {
-        extensions: [".mdx", ".md"],
-        gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-prismjs`,
-            options: {
-              classPrefix: 'language-',
-              inlineCodeMarker: '›',
-              aliases: {},
-            },
-          },
-        ],
-      }
-    },
-    {
-      resolve: "gatsby-plugin-root-import",
-      options: {
-        components: path.join(__dirname, "src/components"),
-        pages: path.join(__dirname, "src/pages")
-      }
+        name: `examples`,
+        path: path.join(__dirname, '/src/examples/'),
+        ignore: [`**/\.*`],
+      },
     }
   ]
 };

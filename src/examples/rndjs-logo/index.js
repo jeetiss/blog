@@ -284,6 +284,13 @@ const BgWithLogo = ({ children, theme }) => (
   </SizeParams>
 );
 
+export const frontmatter = {
+  title: 'Лого RND.JS',
+  description: 'Сделал анимированное лого для локального митапа',
+  slug: 'rndjs-logo',
+  video: 'https://ucarecdn.com/deb737b1-e8ec-41b8-b265-a7a7ce6dbe20/',
+}
+
 export default () => (
   <ThemeProvider theme={mainTheme}>
     <>

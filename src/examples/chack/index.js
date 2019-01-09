@@ -63,4 +63,12 @@ const Layout = styled.div`
   padding: 160px 24px 0;
 `;
 
+export const frontmatter = {
+  title: "",
+  description: "",
+  slug: "",
+  video: "",
+  hide: true
+};
+
 export default App;
