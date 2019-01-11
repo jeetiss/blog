@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const Inner = styled.video`
+const Vds = styled.video`
   width: 100%;
   height: 100%;
   display: block;
+`;
 
+const Shadow = styled.div`
   border-radius: 16px;
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 16px 32px;
@@ -24,11 +26,15 @@ const Relative = styled.div`
 
 const Absolute = styled.div`
   position: absolute;
-  
+
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const RatioBlock = ({ ratio, children }) => (
@@ -40,9 +46,11 @@ const RatioBlock = ({ ratio, children }) => (
 );
 
 const Video = ({ src }) => (
-  <RatioBlock ratio={16 / 9}>
-    <Inner src={src} autoPlay loop muted webkitplaysinline playsInline />
-  </RatioBlock>
+  <Shadow>
+    <RatioBlock ratio={16 / 9}>
+      <Vds src={src} autoPlay loop muted webkitplaysinline playsInline />
+    </RatioBlock>
+  </Shadow>
 );
 
 export default Video;
