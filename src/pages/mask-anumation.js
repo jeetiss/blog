@@ -5,6 +5,17 @@ import mask from "../mask.svg";
 
 // src="https://ucarecdn.com/33c58bc6-e0d2-4120-aa11-7863e4a0772c/-/resize/640x/"
 
+const vars = {
+  size: {
+    from: "100x100",
+    to: "window"
+  },
+  position: {
+    from: "current",
+    to: "center"
+  }
+};
+
 const Relative = styled.div`
   position: relative;
 `;
@@ -49,6 +60,10 @@ const Move = styled.div`
   transition-delay: ${props => (props.delay ? props.delay + "s" : "unset")};
 `;
 
+const Overflow = styled.div`
+  overflow: hidden;
+`;
+
 export default () => {
   const [state, toggle] = useState(true);
 
@@ -63,11 +78,13 @@ export default () => {
         </Flex>
       </Absolute>
 
-      <Scale fire={state} from={1} to={8} onClick={() => toggle(!state)}>
-        <Move fire={state} from={0} to={-20}>
-          <Mask />
-        </Move>
-      </Scale>
+      <Overflow>
+        <Scale fire={state} from={1} to={8} onClick={() => toggle(!state)}>
+          <Move fire={state} from={0} to={-20}>
+            <Mask />
+          </Move>
+        </Scale>
+      </Overflow>
     </Relative>
   );
 };
