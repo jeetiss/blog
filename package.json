@@ -17,8 +17,6 @@
     "@babel/runtime": "^7.1.5",
     "@mdx-js/loader": "^0.16.5",
     "@mdx-js/mdx": "^0.16.5",
-    "@rehooks/component-size": "^1.0.2",
-    "@rehooks/window-size": "^1.0.2",
     "babel-plugin-gather-exports": "0.0.1",
     "babel-plugin-styled-components": "^1.9.1",
     "babel-preset-gatsby": "^0.1.6",
@@ -38,6 +36,7 @@
     "react-dom": "next",
     "react-helmet": "^5.2.0",
     "react-hot-loader": "^4.6.3",
+    "react-use": "^5.2.1",
     "styled-components": "^4.1.2",
     "styled-system": "^3.2.0"
   },
