@@ -1,4 +1,9 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, {
+  useRef,
+  useEffect,
+  useState,
+  useImperativeMethods
+} from "react";
 import styled from "styled-components";
 import { Flex, Box } from "../components/Flexbox";
 import { easing, tween, styler, parallel, delay, chain } from "popmotion";
@@ -27,59 +32,130 @@ const useClientRect = ref => {
   return [rect, setRect];
 };
 
-export default () => {
-  const ref = useRef();
-  const windowSize = useWindowSize();
-  const [rect] = useClientRect(ref);
+const usePopmotion = (animationCreator, inputs) => {
+  const betterApi = useRef({});
+  const referense = useRef(animationCreator());
 
   useEffect(
     () => {
-      console.log(rect, windowSize);
+      referense.current = animationCreator();
+    },
+    [...inputs]
+  );
 
-      const divStyler = styler(ref.current);
+  useImperativeMethods(betterApi, () => ({
+    start: ellReff => {
+      const elStyler = styler(ellReff.current);
 
+      return referense.current.start(values =>
+        values.forEach(value => elStyler.set(value))
+      );
+    }
+  }));
+
+  return betterApi;
+};
+
+const Block = ({ color }) => {
+  const duration = 300;
+
+  const ref = useRef();
+  const windowSize = useWindowSize();
+  const [rect] = useClientRect(ref);
+  const [showed, setShowed] = useState(true);
+
+  const goIn = usePopmotion(
+    () => {
       const scale = tween({
         from: { scaleX: 1, scaleY: 1 },
         to: {
           scaleX: windowSize.width / rect.width || 1,
           scaleY: windowSize.height / rect.height || 1
         },
-        duration: 300,
-        yoyo: Infinity,
-        ease: {
-          scaleX: easing.cubicBezier(0.55, 0.055, 0.675, 0.19),
-          scaleY: easing.cubicBezier(0.55, 0.055, 0.675, 0.19)
-        }
+        duration,
+        ease: easing.cubicBezier(0.55, 0.055, 0.675, 0.19)
       });
 
-      const radius = tween({
-        from: { borderRadius: "16px" },
-        to: { borderRadius: "0px" },
-        duration: 300,
-        yoyo: Infinity,
-        ease: easing.easeIn
-      });
+      const radius = chain(
+        delay(duration / 2),
+        tween({
+          from: { borderRadius: "16px" },
+          to: { borderRadius: "0px" },
+          duration: duration / 2,
+          ease: easing.easeInOut
+        })
+      );
 
       const translate = tween({
         from: { y: 0 },
         to: { y: windowSize.height / 2 - rect.height / 2 - rect.top },
-        duration: 300,
-        yoyo: Infinity,
-        ease: { y: easing.easeOut }
+        duration,
+        ease: easing.easeInOut
       });
 
-      const animation = parallel(scale, translate, radius).start({
-        update: values => values.forEach(value => divStyler.set(value))
+      const animation = parallel(scale, translate, radius);
+
+      return animation;
+    },
+    [windowSize, rect]
+  );
+
+  const goOut = usePopmotion(
+    () => {
+      const scale = tween({
+        from: {
+          scaleX: windowSize.width / rect.width || 1,
+          scaleY: windowSize.height / rect.height || 1
+        },
+        to: { scaleX: 1, scaleY: 1 },
+        duration,
+        ease: easing.cubicBezier(0.215, 0.61, 0.355, 1)
       });
 
-      return () => animation.stop();
+      const radius = tween({
+        from: { borderRadius: "0px" },
+        to: { borderRadius: "16px" },
+        duration: duration / 2,
+        ease: easing.easeInOut
+      });
+
+      const translate = tween({
+        from: { y: windowSize.height / 2 - rect.height / 2 - rect.top },
+        to: { y: 0 },
+        duration,
+        ease: easing.easeInOut
+      });
+
+      const animation = parallel(scale, translate, radius);
+
+      return animation;
     },
     [windowSize, rect]
   );
 
   return (
+    <Modal
+      ref={ref}
+      color={color}
+      onClick={() => {
+        if (showed) {
+          goIn.current.start(ref);
+        } else {
+          goOut.current.start(ref);
+        }
+
+        setShowed(!showed);
+      }}
+    />
+  );
+};
+
+export default () => {
+  return (
     <Flex flexDirection="column" alignItems="center" justifyContent="center">
-      <Modal ref={ref} color={300} />
+      <Block color={100} />
+      <Block color={200} />
+      <Block color={300} />
     </Flex>
   );
 };
