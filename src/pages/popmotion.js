@@ -22,14 +22,23 @@ const Modal = styled.div`
 `;
 
 const useClientRect = ref => {
-  const [rect, setRect] = useState({});
+  const rect = useRef({});
 
-  useEffect(() => {
-    const rect = ref.current.getBoundingClientRect();
-    setRect(rect);
-  }, []);
+  useEffect(
+    () => {
+      const handler = () => {
+        console.log("scroll");
+        rect.current = ref.current.getBoundingClientRect();
+      };
 
-  return [rect, setRect];
+      window.addEventListener("scroll", handler, false);
+
+      return () => window.removeEventListener("scroll", handler, false);
+    },
+    [ref.current]
+  );
+
+  return rect;
 };
 
 const usePopmotion = (animationCreator, inputs) => {
@@ -61,7 +70,7 @@ const Block = ({ color }) => {
 
   const ref = useRef();
   const windowSize = useWindowSize();
-  const [rect] = useClientRect(ref);
+  const rect = useClientRect(ref);
   const [showed, setShowed] = useState(true);
 
   const goIn = usePopmotion(
@@ -69,8 +78,8 @@ const Block = ({ color }) => {
       const scale = tween({
         from: { scaleX: 1, scaleY: 1 },
         to: {
-          scaleX: windowSize.width / rect.width || 1,
-          scaleY: windowSize.height / rect.height || 1
+          scaleX: windowSize.width / rect.current.width || 1,
+          scaleY: windowSize.height / rect.current.height || 1
         },
         duration,
         ease: easing.cubicBezier(0.55, 0.055, 0.675, 0.19)
@@ -88,7 +97,9 @@ const Block = ({ color }) => {
 
       const translate = tween({
         from: { y: 0 },
-        to: { y: windowSize.height / 2 - rect.height / 2 - rect.top },
+        to: {
+          y: windowSize.height / 2 - rect.current.height / 2 - rect.current.top
+        },
         duration,
         ease: easing.easeInOut
       });
@@ -97,15 +108,15 @@ const Block = ({ color }) => {
 
       return animation;
     },
-    [windowSize, rect]
+    [windowSize, rect.current]
   );
 
   const goOut = usePopmotion(
     () => {
       const scale = tween({
         from: {
-          scaleX: windowSize.width / rect.width || 1,
-          scaleY: windowSize.height / rect.height || 1
+          scaleX: windowSize.width / rect.current.width || 1,
+          scaleY: windowSize.height / rect.current.height || 1
         },
         to: { scaleX: 1, scaleY: 1 },
         duration,
@@ -120,7 +131,9 @@ const Block = ({ color }) => {
       });
 
       const translate = tween({
-        from: { y: windowSize.height / 2 - rect.height / 2 - rect.top },
+        from: {
+          y: windowSize.height / 2 - rect.current.height / 2 - rect.current.top
+        },
         to: { y: 0 },
         duration,
         ease: easing.easeInOut
@@ -130,7 +143,7 @@ const Block = ({ color }) => {
 
       return animation;
     },
-    [windowSize, rect]
+    [windowSize, rect.current]
   );
 
   return (
