@@ -52,7 +52,7 @@ const usePopmotion = (animationCreator, inputs) => {
     [...inputs]
   );
 
-  useImperativeMethods(betterApi, () => ({
+  useImperativeHandle(betterApi, () => ({
     start: ellReff => {
       const elStyler = styler(ellReff.current);
 
