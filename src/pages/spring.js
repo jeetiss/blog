@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useSpring, animated } from "react-spring/hooks";
+// import { useSpring, animated } from "react-spring/hooks";
 import { Flex } from "../components/Flexbox";
 
 const calc = (x, y) => [
@@ -24,18 +24,18 @@ const Modal = styled.div`
 `;
 
 function Card(props) {
-  const [spring, set] = useSpring(() => ({
-    xys: [0, 0, 1],
-    config: { mass: 5, tension: 350, friction: 40 }
-  }));
+  // const [spring, set] = useSpring(() => ({
+  //   xys: [0, 0, 1],
+  //   config: { mass: 5, tension: 350, friction: 40 }
+  // }));
 
   return (
     <Modal
       {...props}
-      as={animated.div}
+      // as={animated.div}
       onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
       onMouseLeave={() => set({ xys: [0, 0, 1] })}
-      style={{ transform: spring.xys.interpolate(trans) }}
+      // style={{ transform: spring.xys.interpolate(trans) }}
     />
   );
 }
