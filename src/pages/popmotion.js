@@ -2,7 +2,7 @@ import React, {
   useRef,
   useEffect,
   useState,
-  useImperativeMethods
+  useImperativeHandle
 } from "react";
 import styled from "styled-components";
 import { Flex } from "../components/Flexbox";
