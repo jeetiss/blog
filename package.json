@@ -32,10 +32,11 @@
     "immer": "^1.8.2",
     "nanoid": "^2.0.0",
     "popmotion": "^8.6.1",
-    "react": "next",
-    "react-dom": "next",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
     "react-helmet": "^5.2.0",
     "react-hot-loader": "^4.6.3",
+    "react-spring": "^7.2.10",
     "react-use": "^5.2.1",
     "styled-components": "^4.1.2",
     "styled-system": "^3.2.0"
