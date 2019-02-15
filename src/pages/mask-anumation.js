@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Flex, Box } from "../components/Flexbox";
+import { Flex } from "../components/Flexbox";
 import mask from "../mask.svg";
 
 // src="https://ucarecdn.com/33c58bc6-e0d2-4120-aa11-7863e4a0772c/-/resize/640x/"
 
-const vars = {
-  size: {
-    from: "100x100",
-    to: "window"
-  },
-  position: {
-    from: "current",
-    to: "center"
-  }
-};
+// const vars = {
+//   size: {
+//     from: "100x100",
+//     to: "window"
+//   },
+//   position: {
+//     from: "current",
+//     to: "center"
+//   }
+// };
 
 const Relative = styled.div`
   position: relative;

@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
-import styled from "styled-components";
+import React, { useEffect, useRef } from "react";
 
 import Today from "../chack/components/Today";
 import Scroller from "../chack/components/Scroller";

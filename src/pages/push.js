@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Flex, Box } from "../components/Flexbox";
-import Video from "../components/Video";
-import { Text, Header } from "../components/Text";
 
 // transform-origin: var(--origin);
 const Block = styled.div`

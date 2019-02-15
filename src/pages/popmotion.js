@@ -5,7 +5,7 @@ import React, {
   useImperativeMethods
 } from "react";
 import styled from "styled-components";
-import { Flex, Box } from "../components/Flexbox";
+import { Flex } from "../components/Flexbox";
 import { easing, tween, styler, parallel, delay, chain } from "popmotion";
 import { useWindowSize } from "react-use";
 
