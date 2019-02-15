@@ -58,7 +58,7 @@ const Handler = styled.div`
   width: 100%;
 
   box-sizing: border-box;
-  padding: 24px;
+  padding: 16px 24px;
 `;
 
 const minmax = (min, max) => value => Math.min(Math.max(min, value), max);
@@ -114,13 +114,16 @@ const useDrag = (elementRef, onDrag) => {
 };
 
 const Wrapper = styled.div`
+  user-select: none;
   position: relative;
   width: calc(100% - 24px);
   transform: translateX(var(--position));
 `;
 
 const Thumb = styled.button`
+  user-select: none;
   position: absolute;
+  top: 4px;
   width: 24px;
   height: 16px;
 
@@ -135,52 +138,77 @@ const Thumb = styled.button`
 `;
 
 const Track = styled.div`
+  user-select: none;
   overflow: hidden;
   position: relative;
   width: 100%;
-  height: 16px;
+  height: 24px;
 `;
 
 const TrackBackDrop = styled.div`
+  user-select: none;
   position: absolute;
+  top: 4px;
   width: 100%;
-  height: 100%;
+  height: 16px;
 
   background-color: #e2e2e2;
   backdrop-filter: blur(10px);
   opacity: 0.3;
 `;
 
-// const useLogger = state => {
-//   useEffect(() => {
-//     console.log(state);
-//   }, [state]);
-// };
+const useBoundingClientRect = (nodeRef, { resize, scroll }) => {
+  const [rect, setRect] = useState({});
+
+  const handleChange = () =>
+    console.log("change") ||
+    (nodeRef.current && setRect(nodeRef.current.getBoundingClientRect()));
+
+  useEffect(handleChange, [nodeRef.current]);
+
+  useEffect(() => {
+    resize && addListener(window, "resize", handleChange);
+    scroll && addListener(document, "scroll", handleChange);
+
+    return () => {
+      removeListener(window, "resize", handleChange);
+      removeListener(document, "scroll", handleChange);
+    };
+  }, [resize, scroll]);
+
+  return [rect, setRect];
+};
 
 const Slider = ({ value, onChange, min = 0, max = 100 }) => {
   const thumbRef = useRef();
   const trackRef = useRef();
   const [left, setLeft] = useState(0);
   const [width, setWidth] = useState(0);
+  const [trackSize] = useBoundingClientRect(trackRef, { resize: true });
   // const [value, setValue] = useState(defaultValue);
 
-  let borders = minmax(min, max);
+  const focusIn = () => {
+    console.log("focusin");
+    thumbRef.current.focus();
+  };
 
   useEffect(() => {
-    console.log("recalc");
-    const obj = trackRef.current.getBoundingClientRect();
+    addListener(trackRef.current, "click mouseup", focusIn);
 
-    if (left !== obj.left) setLeft(obj.left);
-    if (width !== obj.width) setWidth(obj.width);
-  }, [trackRef.current]);
+    return () => removeListener(trackRef.current, "click mouseup", focusIn);
+  }, [trackRef.current, thumbRef.current]);
+
+  let borders = minmax(min, max);
 
   useDrag(
     trackRef,
     useCallback(
       ({ x, changedX }) =>
-        console.log(left, width, x, changedX) ||
-        (changedX && onChange(borders(((x - left) / width) * max - min))),
-      [left, width]
+        changedX &&
+        onChange(
+          borders(((x - trackSize.left) / trackSize.width) * (max - min) + min)
+        ),
+      [trackSize.left, trackSize.width]
     )
   );
 
@@ -188,7 +216,9 @@ const Slider = ({ value, onChange, min = 0, max = 100 }) => {
     <Track ref={trackRef}>
       <TrackBackDrop />
 
-      <Wrapper style={{ "--position": `${(value / max) * 100}%` }}>
+      <Wrapper
+        style={{ "--position": `${((value - min) / (max - min)) * 100}%` }}
+      >
         <Thumb ref={thumbRef} />
       </Wrapper>
     </Track>
@@ -211,14 +241,14 @@ export default () => {
       >
         <Left>
           <img
-            src="https://ucarecdn.com/2f93a9ac-414b-4cbe-aef1-0462e3bc8cd8/-/preview/-/filter/gavin/"
+            src="https://ucarecdn.com/9eaf4b7b-6688-43e9-a6e5-9690142d765a/-/preview/"
             alt=""
           />
         </Left>
 
         <Right>
           <img
-            src="https://ucarecdn.com/2f93a9ac-414b-4cbe-aef1-0462e3bc8cd8/-/preview/-/filter/iorill/"
+            src="https://ucarecdn.com/9eaf4b7b-6688-43e9-a6e5-9690142d765a/-/preview/-/blur/100/"
             alt=""
           />
         </Right>
