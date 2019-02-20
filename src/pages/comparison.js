@@ -241,14 +241,14 @@ export default () => {
       >
         <Left>
           <img
-            src="https://ucarecdn.com/9eaf4b7b-6688-43e9-a6e5-9690142d765a/-/preview/"
+            src="https://ucarecdn.com/2f93a9ac-414b-4cbe-aef1-0462e3bc8cd8/-/preview/-/filter/vevera/-100/"
             alt=""
           />
         </Left>
 
         <Right>
           <img
-            src="https://ucarecdn.com/9eaf4b7b-6688-43e9-a6e5-9690142d765a/-/preview/-/blur/100/"
+            src="https://ucarecdn.com/2f93a9ac-414b-4cbe-aef1-0462e3bc8cd8/-/preview/-/filter/vevera/100/"
             alt=""
           />
         </Right>
