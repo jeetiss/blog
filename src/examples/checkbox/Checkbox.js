@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from "styled-components";
 
-const svg = encodeURI(`
+const svg = encodeURIComponent(`
 <svg
   width="14px"
   height="12px"
@@ -10,9 +10,10 @@ const svg = encodeURI(`
 >
   <polyline points="1 7.6 5 11 13 1" style="stroke-width: 2; stroke: #18CDA6;"></polyline>
 </svg>
-`)
+`);
 
-const Checkbox = styled.input({},
+const Checkbox = styled.input(
+  {},
   props => css`
     position: relative;
 
@@ -31,7 +32,7 @@ const Checkbox = styled.input({},
   `,
   props => css`
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       top: 20px;
       left: 20px;
@@ -101,6 +102,6 @@ const Checkbox = styled.input({},
           border-color: #e83232;
         `
       : []
-)
+);
 
-export default Checkbox
+export default Checkbox;
