@@ -1,26 +1,26 @@
 import React from "react";
-import { Link } from "gatsby";
 
 import { Flex, Box } from "../components/Flexbox";
 import Layout from "../components/Layout";
 import Video from "../components/Video";
+import Link from "../components/Link";
 import { Text, Header } from "../components/Text";
 
 const Example = ({ title, description, link, video }) => (
   <Flex my={120} flexDirection="column">
-    <Box>
-      <Header>{title}</Header>
-    </Box>
+    <Link to={link}>
+      <Box>
+        <Header>{title}</Header>
+      </Box>
 
-    <Box>
-      <Text>{description}</Text>
-    </Box>
+      <Box>
+        <Text>{description}</Text>
+      </Box>
 
-    <Box>
-      <Link to={link}>
+      <Box>
         <Video src={video} />
-      </Link>
-    </Box>
+      </Box>
+    </Link>
   </Flex>
 );
 

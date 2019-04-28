@@ -5,7 +5,7 @@ import { space, fontWeight, fontSize, lineHeight } from "styled-system";
 const Font = styled.div(
   {
     margin: 0,
-    fontFamily: 'Fira Sans'
+    fontFamily: "Fira Sans"
   },
   fontWeight,
   fontSize,
@@ -19,8 +19,9 @@ const Text = props => (
     {...{
       fontWeight: 400,
       fontSize: 22,
-      lineHeight: '32px',
-      my: 16
+      lineHeight: "32px",
+      my: 16,
+      color: "black"
     }}
     {...props}
   />
@@ -32,7 +33,7 @@ const Header = props => (
     {...{
       fontWeight: 600,
       fontSize: 32,
-      lineHeight: '32px'
+      lineHeight: "32px"
     }}
     {...props}
   />
