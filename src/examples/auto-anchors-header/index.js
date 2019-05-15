@@ -39,7 +39,7 @@ export default () => (
       <Header as="h1">H1 header</Header>
       <Header as="h1">H1 header</Header>
      
-      <Header as="h2">H2 header</Header>
+      <Header as="h2" anchor='fuck-ea'>H2 header</Header>
       <Header as="h3">H3 header</Header>
       <Header as="h4">H4 header</Header>
       <Header as="h5">H5 header</Header>
