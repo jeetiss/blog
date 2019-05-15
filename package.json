@@ -26,6 +26,7 @@
     "gatsby-plugin-styled-components": "^3.0.7",
     "gatsby-source-filesystem": "^2.0.28",
     "gh-pages": "^2.0.1",
+    "github-slugger": "^1.2.1",
     "immer": "^1.8.2",
     "nanoid": "^2.0.1",
     "popmotion": "^8.6.4",
@@ -34,6 +35,7 @@
     "react-helmet": "^5.2.0",
     "react-spring": "^7.2.10",
     "react-use": "^5.2.1",
+    "react-with-gesture": "^4.0.8",
     "styled-components": "^4.2.0",
     "styled-system": "^3.2.0"
   },
