@@ -27,7 +27,7 @@
     "gatsby-source-filesystem": "^2.0.28",
     "gh-pages": "^2.0.1",
     "github-slugger": "^1.2.1",
-    "immer": "^1.8.2",
+    "immer": "^8.0.1",
     "nanoid": "^2.0.1",
     "popmotion": "^8.6.4",
     "react": "^16.8.6",
